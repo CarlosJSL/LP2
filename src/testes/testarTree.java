@@ -3,6 +3,7 @@ package testes;
 import java.util.HashMap;
 
 import models.GeneralTree;
+import models.LerCSV;
 import models.No;
 import models.Usuario;
 
@@ -23,14 +24,16 @@ public class testarTree {
 		//
 		// t.listarTree();
 		Usuario usuario = new Usuario();
+		LerCSV arquivo = new LerCSV();
+		
+		arquivo.ler("device.csv");
+//		usuario.setUser_id("teste");
 
-		usuario.setUser_id("teste");
-
-		HashMap<String, GeneralTree> hmap = new HashMap<String, GeneralTree>();
-
-		hmap.put(usuario.getUser_id(), t);
-
-		hmap.get(usuario).listarTree();
+//		HashMap<String, GeneralTree> hmap = new HashMap<String, GeneralTree>();
+//
+//		hmap.put(usuario.getUser_id(), t);
+//
+//		hmap.get(usuario).listarTree();
 
 	}
 
