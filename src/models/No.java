@@ -1,7 +1,7 @@
 package models;
 //--Comentarios temporarios--
-//Classe responsavel por representar cada informação da arvore. 
-//Dado: se refere a informação que esta presente no nó.
+//Classe responsavel por representar cada informacao da arvore. 
+//Dado: se refere a informacao que esta presente no no.
 //Frequencia: representa quantas vezes o mesmo dado foi incerido na arvore.
 public class No {
 	
