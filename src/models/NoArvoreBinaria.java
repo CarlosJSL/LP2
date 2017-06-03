@@ -15,4 +15,10 @@ public class NoArvoreBinaria {
 		this.usuario = usuario;
 	}
 
+	@Override
+	public String toString() {
+		return "NoArvoreBinaria [usuario=" + usuario + "]";
+	}
+	
+	
 }

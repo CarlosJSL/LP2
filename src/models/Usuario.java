@@ -57,4 +57,10 @@ public class Usuario {
 		this.tree = tree;
 	}
 
+	@Override
+	public String toString() {
+		return "Usuario [user_id=" + user_id + ", employee_name=" + employee_name + ", email=" + email + ", domain="
+				+ domain + ", role=" + role + ", tree=" + tree + "]";
+	}
+
 }
