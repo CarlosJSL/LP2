@@ -5,23 +5,18 @@ import java.util.Stack;
 import models.ArquivoCSV;
 import models.ArvoreBinaria;
 import models.GeneralTree;
-import models.No;
+
+//import models.GeneralTree;
+//import models.No;
 import models.Usuario;
 
 public class testarTree {
 
 	public static void main(String[] args) {
+		GeneralTree raiz = new GeneralTree("raiz");
 		GeneralTree t = new GeneralTree();
-		No a = new No("A");
-		No b = new No("B");
-		No c = new No("C");
-		No d = new No("D");
+		
 		Stack <Usuario> usuarios = new Stack<Usuario>();
-//		t.inserirFilho(a);
-//		t.inserirFilho(b);
-//		t.inserirFilho(b);
-//		t.getFilho().inserirFilho(d);
-//		t.getFilho().inserirFilho(a);
 		
 		ArvoreBinaria arvore = new ArvoreBinaria();
 
@@ -33,8 +28,16 @@ public class testarTree {
 		
 		arvore = arquivo.gravarCSV(usuarios);
 		
-		arvore.percorrerInOrder();
+		//arvore.percorrerInOrder();
 
+		usuario = arvore.busca("AXB0007");
+		//System.out.println(usuario.getEmployee_name());
+		
+		t = usuario.getTree();
+		raiz.addFilho(t);
+		
+		
+		
 
 	}
 

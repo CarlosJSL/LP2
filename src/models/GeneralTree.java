@@ -1,78 +1,78 @@
 package models;
+
+import java.util.ArrayList;
+import java.util.List;
+
 //Arvore generica responsavel por alocar todos os dados obtidos pelos logs;
 public class GeneralTree {
-	private No root;
-	private GeneralTree filho;
-	private GeneralTree irmao;
+	private String data;
+	int frequencia = 0;
+	private List<GeneralTree> filho;
 	
 	public GeneralTree(){
-		//construtor vazio
+		super();
+		filho = new ArrayList<GeneralTree>();
+		
 	}
 	
-	public No getRoot() {
-		return root;
+	public GeneralTree(String data){
+		this();
+		frequencia = 1;
+		setData(data);
 	}
-
-	public void setRoot(No root) {
-		this.root = root;
-	}
-
-	public GeneralTree getFilho() {
+		
+	public List<GeneralTree> getFilho() {
 		return filho;
 	}
 
-	public void setFilho(GeneralTree filho) {
+	
+	public int getNumeroDeFilho(){
+		return getFilho().size();
+	}
+	
+	public boolean hasFilho(){
+		return (getNumeroDeFilho() > 0);
+	}
+	
+	public void setFilho(List<GeneralTree> filho) {
 		this.filho = filho;
 	}
-
-	public GeneralTree getIrmao() {
-		return irmao;
-	}
-
-	public void setIrmao(GeneralTree irmao) {
-		this.irmao = irmao;
-	}
-
-	public void inserirFilho(No no){
-		if(this.root == null){
-			this.root = no;
-		}else if(this.getFilho() == null){
-			this.filho = new GeneralTree();
-			this.filho.root = no;
-		}else{
-			this.filho.inserirIrmao(no);
-		}
+	
+	public void addFilho(GeneralTree newFilho){
+		filho.add(newFilho);
 	}
 	
-	public void inserirIrmao(No no){
-		if(this.getRoot() == null){
-			this.root = no;
-		}else if(this.getRoot().getDado().equals(no.getDado())){
-			this.root.upFrequencia();
-		}else{
-			if(this.getIrmao() == null){
-				this.irmao = new GeneralTree();
-			}
-			this.irmao.inserirIrmao(no);
-		}
+	public void removerFilho(){
+		this.filho = new ArrayList<GeneralTree>();
 	}
 	
-	public void listarTree(){
-		System.out.print( this.getRoot().getDado() + " - Frequencia: " + this.getRoot().getFrequencia() );
-		if(this.getIrmao() == null){
-			System.out.println("/");
-			if(this.getFilho() == null){
-				return;
-			}
-			this.getFilho().listarTree();
-		}else{
-			System.out.print("/");
-			this.getIrmao().listarTree();
-			if(this.getFilho() == null){
-				System.out.println("");
-				return;
-			}
-			this.getFilho().listarTree();
-		}
+	public void removerFilhoAt(int index) throws IndexOutOfBoundsException{
+		filho.remove(index);
 	}
+	
+	public GeneralTree getFilhoAt(int index) throws IndexOutOfBoundsException {
+		return filho.get(index);
+	}
+	
+	public String getData() {
+		return data;
+	}
+	
+	public void setData(String data) {
+		this.data = data;
+	}
+	
+	public boolean equals(GeneralTree node){
+		return node.getData().equals(getData());
+	}
+	
+	public int getFrequencia() {
+		return frequencia;
+	}
+
+	public void setFrequencia(int frequencia) {
+		this.frequencia = frequencia;
+	}
+	
+	
 }
