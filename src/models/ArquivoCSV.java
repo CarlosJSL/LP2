@@ -38,6 +38,7 @@ public class ArquivoCSV {
 					novoUsuario.setDomain(atributos[2]);
 					novoUsuario.setEmail(atributos[3]);
 					novoUsuario.setRole(atributos[4]);
+					//novoUsuario.getTree().setData(atributos[0]);
 
 
 					usuarios.push(novoUsuario);

@@ -13,7 +13,7 @@ import models.Usuario;
 public class testarTree {
 
 	public static void main(String[] args) {
-		GeneralTree raiz = new GeneralTree("raiz");
+		
 		GeneralTree t = new GeneralTree();
 		
 		Stack <Usuario> usuarios = new Stack<Usuario>();
@@ -28,15 +28,16 @@ public class testarTree {
 		
 		arvore = arquivo.gravarCSV(usuarios);
 		
-		//arvore.percorrerInOrder();
+		arvore.percorrerInOrder();
 
 		usuario = arvore.busca("AXB0007");
-		//System.out.println(usuario.getEmployee_name());
+		
 		
 		t = usuario.getTree();
+		GeneralTree raiz = new GeneralTree(usuario.getEmployee_name());
 		raiz.addFilho(t);
 		
-		
+		System.out.println(raiz.getData());
 		
 
 	}
