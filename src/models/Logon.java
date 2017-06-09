@@ -11,4 +11,9 @@ public class Logon extends Atividade {
 		this.activity = activity;
 	}
 
+	@Override
+	public String toString() {
+		return activity;
+	}
+
 }

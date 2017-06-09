@@ -11,4 +11,9 @@ public class Http extends Atividade {
 		this.url = url;
 	}
 
+	@Override
+	public String toString() {
+		return  url ;
+	}
+
 }

@@ -13,7 +13,7 @@ public class Device extends Atividade {
 
 	@Override
 	public String toString() {
-		return "Device [activity=" + activity + "]";
+		return  activity ;
 	}
 
 }

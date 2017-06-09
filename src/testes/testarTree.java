@@ -7,6 +7,7 @@ import models.ArvoreBinaria;
 import models.Atividade;
 import models.Device;
 import models.GeneralTree;
+import models.NoArvoreBinaria;
 //import models.GeneralTree;
 //import models.No;
 import models.Usuario;
@@ -24,10 +25,12 @@ public class testarTree {
 		Atividade atividade = new Atividade();
 		Usuario usuario = new Usuario();
 		ArquivoCSV arquivo = new ArquivoCSV();
-		
+		NoArvoreBinaria no = new NoArvoreBinaria(usuario);
 		
 //		informacao = arquivo.lerCSVLogUsuario("LogUsuarios/2019-09.csv");
-		informacao = arquivo.lerCSV("device.csv");
+		informacao = arquivo.lerCSV("device2.csv");
+//		atividade = (Atividade)informacao.pop();
+		arquivo.gravarCSV(informacao);
 		
 //		arquivo.gravarCSV(informacao);
 		
