@@ -172,8 +172,31 @@ public class ArquivoCSV {
 		}
 
 	}
-	public ArvoreBinaria recuperarEstadoAnterior(){
+
+	public ArvoreBinaria recuperarEstadoAnterior(String usuarioCSV, String DeviceCSV) {
+		Stack usuarios = new Stack<>();
+		Stack pilhaAtividade = new Stack<>();
+
+		usuarios = lerCSV(usuarioCSV);
+		ArvoreBinaria arvoreBinaria = new ArvoreBinaria();
+
+		while (!usuarios.isEmpty()) {
+
+			NoArvoreBinaria noUsuario = new NoArvoreBinaria((Usuario) usuarios.pop());
+			arvoreBinaria.inserir(noUsuario);
+		}
+
+		pilhaAtividade = lerCSV(DeviceCSV);
 		
+		while (!pilhaAtividade.isEmpty()) {
+			Atividade atividade = new Atividade();
+			atividade = (Atividade) pilhaAtividade.pop();
+			Usuario usuarioJaCadastrado = new Usuario();
+			usuarioJaCadastrado = arvoreBinaria.busca(atividade.getId_user().substring(5));
+			
+			
+		}
+
 		return null;
 	}
 

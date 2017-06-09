@@ -31,7 +31,7 @@ public class testarTree {
 		informacao = arquivo.lerCSV("device2.csv");
 //		atividade = (Atividade)informacao.pop();
 		arquivo.gravarCSV(informacao);
-		
+		arquivo.recuperarEstadoAnterior("2009-12.csv", "device2.csv");
 //		arquivo.gravarCSV(informacao);
 		
 //		arvore = arquivo.gravarCSVLogUsuario(usuarios);
