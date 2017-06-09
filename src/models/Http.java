@@ -2,6 +2,7 @@ package models;
 
 public class Http extends Atividade {
 	String url;
+	
 
 	public String getUrl() {
 		return url;

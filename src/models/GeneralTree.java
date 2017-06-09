@@ -7,11 +7,18 @@ import java.util.List;
 public class GeneralTree {
 	private String data;
 	int frequencia = 0;
-	private List<GeneralTree> filho;
+	private List<Atividade> filho;
 	
 	public GeneralTree(){
 		super();
-		filho = new ArrayList<GeneralTree>();
+		filho = new ArrayList<Atividade>();
+		
+		Atividade device = new Device();
+		Atividade http = new Http();
+		Atividade logon = new Logon();
+		filho.add(device);
+		filho.add(http);
+		filho.add(logon);
 		
 	}
 	
@@ -19,9 +26,10 @@ public class GeneralTree {
 		this();
 		frequencia = 1;
 		setData(data);
+		
 	}
 		
-	public List<GeneralTree> getFilho() {
+	public List<Atividade> getFilho() {
 		return filho;
 	}
 
@@ -34,23 +42,30 @@ public class GeneralTree {
 		return (getNumeroDeFilho() > 0);
 	}
 	
-	public void setFilho(List<GeneralTree> filho) {
+	public void setFilho(List<Atividade> filho) {
 		this.filho = filho;
 	}
 	
-	public void addFilho(GeneralTree newFilho){
-		filho.add(newFilho);
+	public void addFilho(Atividade newFilho){
+		if(newFilho instanceof Device)
+			filho.get(0).atividade.add(((Device) newFilho).activity);
+		
+		if(newFilho instanceof Http)
+			filho.get(1).atividade.add(((Http) newFilho).url);
+		
+		if(newFilho instanceof Logon)
+			filho.get(2).atividade.add(((Logon) newFilho).activity);
 	}
 	
 	public void removerFilho(){
-		this.filho = new ArrayList<GeneralTree>();
+		this.filho = new ArrayList<Atividade>();
 	}
 	
 	public void removerFilhoAt(int index) throws IndexOutOfBoundsException{
 		filho.remove(index);
 	}
 	
-	public GeneralTree getFilhoAt(int index) throws IndexOutOfBoundsException {
+	public Atividade getFilhoAt(int index) throws IndexOutOfBoundsException {
 		return filho.get(index);
 	}
 	

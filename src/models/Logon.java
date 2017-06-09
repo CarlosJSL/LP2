@@ -2,6 +2,7 @@ package models;
 
 public class Logon extends Atividade {
 	String activity;
+	
 
 	public String getActivity() {
 		return activity;

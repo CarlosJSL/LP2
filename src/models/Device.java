@@ -2,7 +2,7 @@ package models;
 
 public class Device extends Atividade {
 	String activity;
-
+	
 	public String getActivity() {
 		return activity;
 	}

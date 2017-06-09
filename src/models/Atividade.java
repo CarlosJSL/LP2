@@ -1,10 +1,21 @@
 package models;
 
+import java.util.List;
+
 public class Atividade {
 	String id;
 	String date;
 	String id_user;
 	String pc;
+	List<String> atividade;
+	
+	public List<String> getAtividade() {
+		return atividade;
+	}
+
+	public void setAtividade(List<String> atividade) {
+		this.atividade = atividade;
+	}
 
 	public String getId() {
 		return id;
@@ -36,6 +47,10 @@ public class Atividade {
 
 	public void setPc(String pc) {
 		this.pc = pc;
+	}
+	
+	public void addAtividade(String atividade){
+		this.atividade.add(atividade);
 	}
 
 	@Override
