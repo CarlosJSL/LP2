@@ -1,5 +1,6 @@
 package testes;
 
+import java.util.List;
 import java.util.Stack;
 
 import models.ArquivoCSV;
@@ -18,6 +19,7 @@ public class testarTree {
 		
 		GeneralTree t = new GeneralTree();
 		
+		
 		Stack informacao= new Stack();
 		
 		ArvoreBinaria arvore = new ArvoreBinaria();
@@ -29,12 +31,16 @@ public class testarTree {
 		
 //		informacao = arquivo.lerCSVLogUsuario("LogUsuarios/2019-09.csv");
 		informacao = arquivo.lerCSV("device2.csv");
-		atividade = (Atividade)informacao.pop();
-		System.out.println(atividade);
+		atividade = (Device)informacao.pop();
+		//System.out.println(atividade);
 		arquivo.gravarCSV(informacao);
 //		arquivo.recuperarEstadoAnterior("2009-12.csv", "device2.csv");
 //		arquivo.gravarCSV(informacao);
+		t.addFilho(atividade);
+		Device d = t.getFilhoDevice();
 		
+		List<String> lista = d.getAtividade();
+		System.out.println(lista.size());
 //		arvore = arquivo.gravarCSVLogUsuario(usuarios);
 //		
 //		arvore.percorrerInOrder();

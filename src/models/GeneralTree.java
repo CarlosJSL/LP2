@@ -7,19 +7,15 @@ import java.util.List;
 public class GeneralTree {
 	private String data;
 	int frequencia = 0;
-	private List<Atividade> filho;
+	private Device filhoDevice;
+	private Http filhoHttp;
+	private Logon filhoLogon;
 	
 	public GeneralTree(){
 		super();
-		filho = new ArrayList<Atividade>();
-		
-		Atividade device = new Device();
-		Atividade http = new Http();
-		Atividade logon = new Logon();
-		filho.add(device);
-		filho.add(http);
-		filho.add(logon);
-		
+		filhoDevice = new Device();
+		filhoHttp = new Http();
+		filhoLogon = new Logon();
 	}
 	
 	public GeneralTree(String data){
@@ -29,45 +25,70 @@ public class GeneralTree {
 		
 	}
 		
-	public List<Atividade> getFilho() {
+	/*public List<Atividade> getFilho() {
 		return filho;
-	}
+	}*/
 
 	
-	public int getNumeroDeFilho(){
+	public Device getFilhoDevice() {
+		return filhoDevice;
+	}
+
+	public void setFilhoDevice(Device filhoDevice) {
+		this.filhoDevice = filhoDevice;
+	}
+
+	public Http getFilhoHttp() {
+		return filhoHttp;
+	}
+
+	public void setFilhoHttp(Http filhoHttp) {
+		this.filhoHttp = filhoHttp;
+	}
+
+	public Logon getFilhoLogon() {
+		return filhoLogon;
+	}
+
+	public void setFilhoLogon(Logon filhoLogon) {
+		this.filhoLogon = filhoLogon;
+	}
+
+	/*public int getNumeroDeFilho(){
 		return getFilho().size();
-	}
+	}*/
 	
-	public boolean hasFilho(){
+/*	public boolean hasFilho(){
 		return (getNumeroDeFilho() > 0);
-	}
-	
+	}*/
+	/*
 	public void setFilho(List<Atividade> filho) {
 		this.filho = filho;
 	}
+	*/
 	
 	public void addFilho(Atividade newFilho){
 		if(newFilho instanceof Device)
-			filho.get(0).atividade.add(((Device) newFilho).activity);
+			filhoDevice.addAtividade(((Device) newFilho).getActivity());
 		
 		if(newFilho instanceof Http)
-			filho.get(1).atividade.add(((Http) newFilho).url);
+			filhoHttp.addAtividade(((Http) newFilho).getUrl());
 		
 		if(newFilho instanceof Logon)
-			filho.get(2).atividade.add(((Logon) newFilho).activity);
+			filhoLogon.addAtividade(((Logon) newFilho).getActivity());
 	}
 	
-	public void removerFilho(){
+	/*public void removerFilho(){
 		this.filho = new ArrayList<Atividade>();
-	}
+	}*/
 	
-	public void removerFilhoAt(int index) throws IndexOutOfBoundsException{
+	/*public void removerFilhoAt(int index) throws IndexOutOfBoundsException{
 		filho.remove(index);
-	}
+	}*/
 	
-	public Atividade getFilhoAt(int index) throws IndexOutOfBoundsException {
+	/*public Atividade getFilhoAt(int index) throws IndexOutOfBoundsException {
 		return filho.get(index);
-	}
+	}*/
 	
 	public String getData() {
 		return data;

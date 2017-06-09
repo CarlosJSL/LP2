@@ -1,5 +1,6 @@
 package models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Atividade {
@@ -8,6 +9,10 @@ public class Atividade {
 	String id_user;
 	String pc;
 	List<String> atividade;
+	
+	public Atividade(){
+		atividade = new ArrayList<String>();
+	}
 	
 	public List<String> getAtividade() {
 		return atividade;
