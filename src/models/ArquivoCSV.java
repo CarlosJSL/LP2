@@ -10,14 +10,16 @@ import java.util.Stack;
 
 public class ArquivoCSV {
 
+	@SuppressWarnings("rawtypes")
 	public Stack lerCSV(String nomeArquivo) {
 
 		String arquivoCSV = nomeArquivo;
 		BufferedReader br = null;
 		String linha = "";
 		String csvDivisor = ",";
-		Stack <Usuario> usuarios = new Stack<Usuario>();
-
+		Stack pilha = new Stack<>();
+		Atividade atividade;
+		FuncaoFabrica funcaoFabrica = new FuncaoFabrica();
 		Usuario teste = new Usuario();
 
 		int pularPrimeiraLinhaCSV = 0;
@@ -28,20 +30,21 @@ public class ArquivoCSV {
 			while ((linha = br.readLine()) != null) {
 
 				if (pularPrimeiraLinhaCSV != 0) {
-
-					Usuario novoUsuario = new Usuario();
-
 					String[] atributos = linha.split(csvDivisor);
+					atividade = funcaoFabrica.tipoDeAtividade(atributos);
 
-					novoUsuario.setEmployee_name(atributos[0]);
-					novoUsuario.setUser_id(atributos[1]);
-					novoUsuario.setDomain(atributos[2]);
-					novoUsuario.setEmail(atributos[3]);
-					novoUsuario.setRole(atributos[4]);
-					//novoUsuario.getTree().setData(atributos[0]);
+					if (atividade == null) {
+						Usuario novoUsuario = new Usuario();
+						novoUsuario.setEmployee_name(atributos[0]);
+						novoUsuario.setUser_id(atributos[1]);
+						novoUsuario.setDomain(atributos[2]);
+						novoUsuario.setEmail(atributos[3]);
+						novoUsuario.setRole(atributos[4]);
+						pilha.push(novoUsuario);
+					} else {
+						pilha.push(atividade);
+					}
 
-
-					usuarios.push(novoUsuario);
 				} else {
 					pularPrimeiraLinhaCSV = 1;
 				}
@@ -52,25 +55,26 @@ public class ArquivoCSV {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-			usuarios = null;
-			return usuarios;
+			pilha = null;
+			return pilha;
 		} finally {
 			if (br != null) {
 				try {
 					br.close();
-					return usuarios;
+					return pilha;
 				} catch (IOException e) {
 					e.printStackTrace();
-					usuarios = null;
-					return usuarios;
+					pilha = null;
+					return pilha;
 				}
 			}
 		}
 
-		return usuarios;
+		return pilha;
 	}
 
-	public ArvoreBinaria gravarCSV(Stack usuarios) {
+
+	public ArvoreBinaria gravarCSV(Stack informacao) {
 
 		String arquivoCSV = "logUsuario";
 		BufferedWriter StrW = null;
@@ -86,26 +90,33 @@ public class ArquivoCSV {
 		try {
 
 			StrW = new BufferedWriter(new FileWriter(arquivoCSV));
-			StrW.write("employee_name,user_id,Domain,Email,Role\n");
+			
+			if(informacao.peek() instanceof Usuario){
+				StrW.write("employee_name,user_id,Domain,Email,Role\n");
+			}else if (informacao.peek() instanceof Device ){
+				
+			}else if (informacao.peek() instanceof Http){
+				
+			}else if (informacao.peek() instanceof Logon){
+				
+			}
+		
 
-			while (!usuarios.isEmpty()) {
-				Usuario novoUsuario = new Usuario();
-				novoUsuario =  (Usuario) usuarios.pop();
-				StrW.write(novoUsuario.getEmployee_name() + "," + novoUsuario.user_id + "," + novoUsuario.getDomain()
-						+ "," + novoUsuario.getEmail() + "," + novoUsuario.getRole() + "\n");
-				 
-				NoArvoreBinaria noUsuario = new NoArvoreBinaria(novoUsuario);
-				 arvoreBinaria.inserir(noUsuario);
+			while (!informacao.isEmpty()) {
+					
+				
+				StrW.write("");
+
 			}
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
 			arvoreBinaria = null;
 			return arvoreBinaria;
-			
+
 		} finally {
 
 			if (StrW != null) {
