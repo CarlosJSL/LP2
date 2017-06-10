@@ -1,6 +1,6 @@
 package testes;
 
-import models.Interface;
+import interfaceDoPrograma.Interface;
 
 public class TestaInterface {
 		public static void main(String[] args) {

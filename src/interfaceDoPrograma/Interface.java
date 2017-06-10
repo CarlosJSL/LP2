@@ -1,4 +1,4 @@
-package models;
+package interfaceDoPrograma;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -63,17 +63,18 @@ public class Interface extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent evento) {
 		
-		Interface tela = new Interface();
-		tela.setVisible(true);
+		//Interface tela = new Interface();
+		//tela.setVisible(true);
 		
 		if (evento.getSource() == mItem1){
-			tela.setTitle("Clientes");
+			InterfaceAddLog addLog = new InterfaceAddLog();
+			addLog.setVisible(true);
 		}
 		if (evento.getSource() == mItem2){
-			tela.setTitle("Fornecedores");
+			//tela.setTitle("Fornecedores");
 		}
 		if (evento.getSource() == mItem3){
-			tela.setTitle("Produtos");
+			//tela.setTitle("Produtos");
 		}
 	}
 }
