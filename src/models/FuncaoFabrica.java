@@ -23,7 +23,7 @@ public class FuncaoFabrica {
 			logon.setActivity(atributos[4]);
 			return logon;
 		}
-		if (atributos[4].contains("www")) {
+		if (atributos[4].contains("http://")) {
 			Http http = new Http();
 
 			http.setId(atributos[0]);

@@ -51,6 +51,8 @@ public class ArvoreBinaria {
 					this.arvoreEsquerda = new ArvoreBinaria();
 				}
 				this.arvoreEsquerda.inserir(no);
+			}else if (no.getUsuario().getUser_id().compareTo(this.raiz.getUsuario().getUser_id()) == 0){
+					this.raiz = no;
 			}
 		}
 
@@ -60,7 +62,7 @@ public class ArvoreBinaria {
 		if (this.raiz == null) {
 			return;
 		}
-
+		
 		if (this.arvoreEsquerda != null) {
 			this.arvoreEsquerda.percorrerInOrder();
 		}
@@ -130,6 +132,12 @@ public class ArvoreBinaria {
 				}
 			}
 		}
+	}
+
+	@Override
+	public String toString() {
+		return "ArvoreBinaria [raiz=" + raiz + ", arvoreEsquerda=" + arvoreEsquerda + ", arvoreDireita=" + arvoreDireita
+				+ "]";
 	}
 
 }

@@ -87,7 +87,8 @@ public class ArquivoCSV {
 
 		try {
 			if (informacao.peek() instanceof Usuario) {
-				File file = new File("backup/usuario.csv");
+				System.out.println(informacao.pop());
+				File file = new File("backup/usuarios.csv");
 				if (file.exists()) {
 					arquivoCSV = "backup/usuarios.csv";
 					StrW = new BufferedWriter(new FileWriter(arquivoCSV, true));
@@ -106,6 +107,7 @@ public class ArquivoCSV {
 				}
 			} else {
 				if (informacao.peek() instanceof Http) {
+
 					File file = new File("backup/http.csv");
 					if (file.exists()) {
 						arquivoCSV = "backup/http.csv";
@@ -173,7 +175,7 @@ public class ArquivoCSV {
 
 	}
 
-	public ArvoreBinaria recuperarEstadoAnterior(String usuarioCSV, String DeviceCSV) {
+	public ArvoreBinaria recuperarEstadoAnterior(String usuarioCSV, String DeviceCSV, String HttpCSV, String LogonCSV) {
 		Stack usuarios = new Stack<>();
 		Stack pilhaAtividade = new Stack<>();
 
@@ -181,23 +183,69 @@ public class ArquivoCSV {
 		ArvoreBinaria arvoreBinaria = new ArvoreBinaria();
 
 		while (!usuarios.isEmpty()) {
-
+			GeneralTree arvoreGenerica = new GeneralTree();
 			NoArvoreBinaria noUsuario = new NoArvoreBinaria((Usuario) usuarios.pop());
+			noUsuario.getUsuario().setTree(arvoreGenerica);
 			arvoreBinaria.inserir(noUsuario);
 		}
 
 		pilhaAtividade = lerCSV(DeviceCSV);
-		
+
 		while (!pilhaAtividade.isEmpty()) {
 			Atividade atividade = new Atividade();
+
 			atividade = (Atividade) pilhaAtividade.pop();
+
 			Usuario usuarioJaCadastrado = new Usuario();
 			usuarioJaCadastrado = arvoreBinaria.busca(atividade.getId_user().substring(5));
-			
-			
+			if (usuarioJaCadastrado != null) {
+				System.out.println(usuarioJaCadastrado);
+				usuarioJaCadastrado.getTree().addFilho(atividade);
+
+				NoArvoreBinaria no = new NoArvoreBinaria(usuarioJaCadastrado);
+				arvoreBinaria.inserir(no);
+			}
+
 		}
 
-		return null;
+		pilhaAtividade = lerCSV(HttpCSV);
+
+		while (!pilhaAtividade.isEmpty()) {
+			Atividade atividade = new Atividade();
+
+			atividade = (Atividade) pilhaAtividade.pop();
+
+			Usuario usuarioJaCadastrado = new Usuario();
+			usuarioJaCadastrado = arvoreBinaria.busca(atividade.getId_user().substring(5));
+			if (usuarioJaCadastrado != null) {
+				System.out.println(usuarioJaCadastrado);
+				usuarioJaCadastrado.getTree().addFilho(atividade);
+
+				NoArvoreBinaria no = new NoArvoreBinaria(usuarioJaCadastrado);
+				arvoreBinaria.inserir(no);
+			}
+
+		}
+
+		pilhaAtividade = lerCSV(LogonCSV);
+
+		while (!pilhaAtividade.isEmpty()) {
+			Atividade atividade = new Atividade();
+
+			atividade = (Atividade) pilhaAtividade.pop();
+
+			Usuario usuarioJaCadastrado = new Usuario();
+			usuarioJaCadastrado = arvoreBinaria.busca(atividade.getId_user().substring(5));
+			if (usuarioJaCadastrado != null) {
+				System.out.println(usuarioJaCadastrado);
+				usuarioJaCadastrado.getTree().addFilho(atividade);
+
+				NoArvoreBinaria no = new NoArvoreBinaria(usuarioJaCadastrado);
+				arvoreBinaria.inserir(no);
+			}
+
+		}
+		return arvoreBinaria;
 	}
 
 }

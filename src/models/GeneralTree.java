@@ -68,6 +68,7 @@ public class GeneralTree {
 	*/
 	
 	public void addFilho(Atividade newFilho){
+		System.out.println(newFilho.getDate());
 		if(newFilho instanceof Device)
 			filhoDevice.addAtividade(((Device) newFilho).getActivity());
 		
