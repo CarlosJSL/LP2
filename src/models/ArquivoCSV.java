@@ -27,8 +27,11 @@ public class ArquivoCSV {
 		int pularPrimeiraLinhaCSV = 0;
 
 		try {
-
-			br = new BufferedReader(new FileReader(arquivoCSV));
+			try{
+				br = new BufferedReader(new FileReader(arquivoCSV));
+			}catch(FileNotFoundException e){
+				return pilha;
+			}
 			while ((linha = br.readLine()) != null) {
 
 				if (pularPrimeiraLinhaCSV != 0) {
@@ -87,7 +90,7 @@ public class ArquivoCSV {
 
 		try {
 			if (informacao.peek() instanceof Usuario) {
-				System.out.println(informacao.pop());
+				//System.out.println(informacao.pop());
 				File file = new File("backup/usuarios.csv");
 				if (file.exists()) {
 					arquivoCSV = "backup/usuarios.csv";
@@ -95,15 +98,27 @@ public class ArquivoCSV {
 				} else {
 					arquivoCSV = "backup/usuarios.csv";
 					StrW = new BufferedWriter(new FileWriter(arquivoCSV, false));
-					StrW.write("employee_name,user_id,Domain,Email,Role\n");
+					String tipoDeSistema = System.getProperty("os.name");
+					if(tipoDeSistema.contains("Windows")){
+						StrW.write("employee_name,user_id,Domain,Email,Role\r\n");
+					}else{
+						StrW.write("employee_name,user_id,Domain,Email,Role\n");
+					}
 				}
 				while (!informacao.isEmpty()) {
 					Usuario novoUsuario = new Usuario();
 
 					novoUsuario = (Usuario) informacao.pop();
-					StrW.write(novoUsuario.getEmployee_name() + "," + novoUsuario.getUser_id() + ","
-							+ novoUsuario.getDomain() + "," + novoUsuario.getEmail() + "," + novoUsuario.getRole()
-							+ "\n");
+					String tipoDeSistema = System.getProperty("os.name");
+					if(tipoDeSistema.contains("Windows")){
+						StrW.write(novoUsuario.getEmployee_name() + "," + novoUsuario.getUser_id() + ","
+								+ novoUsuario.getDomain() + "," + novoUsuario.getEmail() + "," + novoUsuario.getRole()
+								+ "\r\n");
+					}else{
+						StrW.write(novoUsuario.getEmployee_name() + "," + novoUsuario.getUser_id() + ","
+								+ novoUsuario.getDomain() + "," + novoUsuario.getEmail() + "," + novoUsuario.getRole()
+								+ "\n");
+					}
 				}
 			} else {
 				if (informacao.peek() instanceof Http) {
@@ -115,7 +130,12 @@ public class ArquivoCSV {
 					} else {
 						arquivoCSV = "backup/http.csv";
 						StrW = new BufferedWriter(new FileWriter(arquivoCSV, false));
-						StrW.write("id,date,user,pc,url\n");
+						String tipoDeSistema = System.getProperty("os.name");
+						if(tipoDeSistema.contains("Windows")){
+							StrW.write("id,date,user,pc,url\r\n");
+						}else{
+							StrW.write("id,date,user,pc,url\n");
+						}
 					}
 
 				} else if (informacao.peek() instanceof Device) {
@@ -126,7 +146,12 @@ public class ArquivoCSV {
 					} else {
 						arquivoCSV = "backup/device.csv";
 						StrW = new BufferedWriter(new FileWriter(arquivoCSV, false));
-						StrW.write("id,date,user,pc,activy\n");
+						String tipoDeSistema = System.getProperty("os.name");
+						if(tipoDeSistema.contains("Windows")){
+							StrW.write("id,date,user,pc,activy\r\n");
+						}else{
+							StrW.write("id,date,user,pc,activy\n");
+						}
 					}
 
 				} else {
@@ -137,7 +162,12 @@ public class ArquivoCSV {
 					} else {
 						arquivoCSV = "backup/logon.csv";
 						StrW = new BufferedWriter(new FileWriter(arquivoCSV, false));
-						StrW.write("id,date,user,pc,activy\n");
+						String tipoDeSistema = System.getProperty("os.name");
+						if(tipoDeSistema.contains("Windows")){
+							StrW.write("id,date,user,pc,activy\r\n");
+						}else{
+							StrW.write("id,date,user,pc,activy\n");
+						}
 					}
 
 				}
@@ -146,8 +176,15 @@ public class ArquivoCSV {
 
 					Atividade atividade = new Atividade();
 					atividade = (Atividade) informacao.pop();
-					StrW.write(atividade.getId() + "," + atividade.getDate() + "," + atividade.getId_user() + ","
-							+ atividade.getPc() + "," + atividade + "\n");
+					
+					String tipoDeSistema = System.getProperty("os.name");
+					if(tipoDeSistema.contains("Windows")){
+						StrW.write(atividade.getId() + "," + atividade.getDate() + "," + atividade.getId_user() + ","
+								+ atividade.getPc() + "," + atividade + "\r\n");
+					}else{
+						StrW.write(atividade.getId() + "," + atividade.getDate() + "," + atividade.getId_user() + ","
+								+ atividade.getPc() + "," + atividade + "\n");
+					}
 				}
 
 			}
