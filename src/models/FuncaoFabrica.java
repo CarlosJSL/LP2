@@ -30,7 +30,7 @@ public class FuncaoFabrica {
 			http.setDate(atributos[1]);
 			http.setId_user(atributos[2]);
 			http.setPc(atributos[3]);
-			http.setUrl(atributos[4]);
+			http.setActivity(atributos[4]);
 
 			return http;
 		}

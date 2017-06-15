@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.EmptyStackException;
 import java.util.Stack;
 
 public class ArquivoCSV {
@@ -87,7 +88,7 @@ public class ArquivoCSV {
 		ArvoreBinaria arvoreBinaria = new ArvoreBinaria();
 
 		Usuario teste = new Usuario();
-
+		
 		try {
 			if (informacao.peek() instanceof Usuario) {
 				// System.out.println(informacao.pop());
@@ -180,15 +181,16 @@ public class ArquivoCSV {
 					String tipoDeSistema = System.getProperty("os.name");
 					if (tipoDeSistema.contains("Windows")) {
 						StrW.write(atividade.getId() + "," + atividade.getDate() + "," + atividade.getId_user() + ","
-								+ atividade.getPc() + "," + atividade + "\r\n");
+								+ atividade.getPc() + "," + atividade.getActivity() + "\r\n");
 					} else {
 						StrW.write(atividade.getId() + "," + atividade.getDate() + "," + atividade.getId_user() + ","
-								+ atividade.getPc() + "," + atividade + "\n");
+								+ atividade.getPc() + "," + atividade.getActivity() + "\n");
 					}
 				}
 
 			}
-
+		} catch (EmptyStackException e){
+			e.printStackTrace();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 

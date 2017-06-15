@@ -14,16 +14,10 @@ import models.GeneralTree;
 public class testaFuncionalidade {
 
 	public static void main(String[] args) {
-		GeneralTree t = new GeneralTree();
-		Atividade a = new Device();
-		List<String> l = new ArrayList<String>();
-		l.add("Judson");
-		l.add("Matheus");
-		l.add("Andrade");
-		a.setAtividade(l);
-		t.addFilho(a);
-		System.out.println(t.getNumeroDevice());
-	
+		ArquivoCSV arquivo = new ArquivoCSV();
+		Stack t = new Stack();
+		t = arquivo.lerCSV("http2.csv");
+		arquivo.gravarCSV(t);
 	}
 
 }

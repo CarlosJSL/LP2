@@ -1,20 +1,30 @@
 package models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Http extends Atividade {
-	String url;
+	List<String> atividade;
 	
-
-	public String getUrl() {
-		return url;
+	public Http(){
+		super();
+		atividade = new ArrayList<String>();
+	}
+	
+	public List<String> getAtividade() {
+		return atividade;
 	}
 
-	public void setUrl(String url) {
-		this.url = url;
+	public void setAtividade(List<String> activity) {
+		this.atividade = activity;
 	}
 
-	@Override
-	public String toString() {
-		return  url ;
+	public void addAtividade(String newAtividade){
+		this.atividade.add(newAtividade);
+	}
+	
+	public int getTamanho() {
+		return atividade.size();
 	}
 
 }

@@ -1,21 +1,30 @@
 package models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Device extends Atividade {
-	String activity;
+	List<String> atividade;
 	
-	public String getActivity() {
-		return activity;
+	public Device(){
+		super();
+		atividade = new ArrayList<String>();
+	}
+	
+	public List<String> getAtividade() {
+		return atividade;
 	}
 
-	public void setActivity(String activity) {
-		this.activity = activity;
+	public void setAtividade(List<String> activity) {
+		this.atividade = activity;
 	}
 
-	@Override
-	public String toString() {
-		return  activity ;
+	public void addAtividade(String newAtividade){
+		this.atividade.add(newAtividade);
+	}
+
+	public int getTamanho() {
+		return atividade.size();
 	}
 
 

@@ -8,22 +8,18 @@ public class Atividade {
 	String date;
 	String id_user;
 	String pc;
-	List<String> atividade;
+	String activity;
 	
 	public Atividade(){
-		atividade = new ArrayList<String>();
+		
 	}
 	
-	public List<String> getAtividade() {
-		return atividade;
+	public String getActivity() {
+		return activity;
 	}
 	
-	public int getTamanho(){
-		return atividade.size();
-	}
-
-	public void setAtividade(List<String> atividade) {
-		this.atividade = atividade;
+	public void setActivity(String atividade) {
+		this.activity = atividade;
 	}
 
 	public String getId() {
@@ -58,9 +54,7 @@ public class Atividade {
 		this.pc = pc;
 	}
 	
-	public void addAtividade(List<String> list){
-		this.atividade.addAll(list);
-	}
+	
 
 	@Override
 	public String toString() {

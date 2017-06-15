@@ -1,20 +1,29 @@
 package models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Logon extends Atividade {
-	String activity;
+	List<String> atividade;
 	
-
-	public String getActivity() {
-		return activity;
+	public Logon(){
+		super();
+		atividade = new ArrayList<String>();
 	}
 
-	public void setActivity(String activity) {
-		this.activity = activity;
+	public List<String> getAtividade() {
+		return atividade;
 	}
 
-	@Override
-	public String toString() {
-		return activity;
+	public void setAtividade(List<String> activity) {
+		this.atividade = activity;
 	}
 
+	public void addAtividade(String newAtividade){
+		this.atividade.add(newAtividade);
+	}
+
+	public int getTamanho() {
+		return atividade.size();
+	}
 }

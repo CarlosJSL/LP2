@@ -40,7 +40,7 @@ public class testarTree {
 		arvore = arquivo.recuperarEstadoAnterior("backup/usuarios.csv", "backup/device.csv", "backup/http.csv",
 				"backup/logon.csv");
 		
-		System.out.println(arvore.busca("KEE0997").getTree().getFilhoLogon().getActivity());
+		System.out.println(arvore.busca("KEE0997").getTree().getNumeroLogon());
 //		TreeGUI tree = new TreeGUI(arvore);
 
 	}
