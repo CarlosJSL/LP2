@@ -25,7 +25,7 @@ public class testarTree {
 		ArquivoCSV arquivo = new ArquivoCSV();
 
 
-		informacao = arquivo.lerCSV("logUsuario.csv");
+		informacao = arquivo.lerCSV("logUsuarioTeste.csv");
 		arquivo.gravarCSV(informacao);
 		
 		informacao = arquivo.lerCSV("device2.csv");
@@ -40,8 +40,8 @@ public class testarTree {
 		arvore = arquivo.recuperarEstadoAnterior("backup/usuarios.csv", "backup/device.csv", "backup/http.csv",
 				"backup/logon.csv");
 																							
-		System.out.println(arvore.busca("KEE0997").getTree().getFilhoLogon().getAtividade().get(0).getId());//get(0) retorna a primeira atividade de logon
-//		TreeGUI tree = new TreeGUI(arvore);
+		System.out.println(arvore.busca("IRC0991").getTree().getFilhoLogon().getAtividade().size());//get(0) retorna a primeira atividade de logon
+		TreeGUI tree = new TreeGUI(arvore);
 
 	}
 
