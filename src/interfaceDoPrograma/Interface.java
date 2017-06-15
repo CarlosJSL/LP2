@@ -53,12 +53,10 @@ public class Interface extends JFrame implements ActionListener{
 	    painelPrincipal.setSize(290, 290);
 	    painelPrincipal.setBounds(10, 10, 260, 220);
 	    this.add(painelPrincipal);
-	    painelPrincipal.setText("Dados registrados no sistema \n" + 
-	    "Usuarios: " + arvore.contarElementos(arvore) + "\n" +
-	    "Devices: " + arvore.contarDevice(arvore) + "\n" +
-	    "Http: " + arvore.contarHttp(arvore) + "\n" +
-	    "Logon: " + arvore.contarLogon(arvore) + "\n");
-	    
+	    if(arvore != null){
+		    painelPrincipal.setText("Dados registrados no sistema \n" + 
+		    "Selecione em relatorio o dado desejado");
+	    }
 	    
 	    logMenu = new JMenu("Cadastrar Logs");
 		relaMenu = new JMenu("Relatorios");
@@ -103,7 +101,16 @@ public class Interface extends JFrame implements ActionListener{
 			
 		}
 		if (evento.getSource() == mItem3){
+			ArvoreBinaria arvore = new ArvoreBinaria();
+			ArquivoCSV arquivo = new ArquivoCSV();
+			arvore = arquivo.recuperarEstadoAnterior("backup/usuarios.csv", "backup/device.csv", "backup/http.csv",
+					"backup/logon.csv");
 			
+			painelPrincipal.setText("Usuarios: " + arvore.contarElementos(arvore) + "\n" +
+		    "Devices: " + arvore.contarDevice(arvore) + "\n" +
+		    "Http: " + arvore.contarHttp(arvore) + "\n" +
+		    "Logon: " + arvore.contarLogon(arvore) + "\n" +
+		    "Para atualizar a pagina clique em RELATORIO -> GERAL");
 		}
 		if (evento.getSource() == mItem4){
 			//chamar função gravarCSV;

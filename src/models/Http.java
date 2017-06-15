@@ -4,22 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Http extends Atividade {
-	List<String> atividade;
+	List<Atividade> atividade;
 	
 	public Http(){
 		super();
-		atividade = new ArrayList<String>();
+		atividade = new ArrayList<Atividade>();
 	}
 	
-	public List<String> getAtividade() {
+	public List<Atividade> getAtividade() {
 		return atividade;
 	}
 
-	public void setAtividade(List<String> activity) {
+	public void setAtividade(List<Atividade> activity) {
 		this.atividade = activity;
 	}
 
-	public void addAtividade(String newAtividade){
+	public void addAtividade(Atividade newAtividade){
 		this.atividade.add(newAtividade);
 	}
 	

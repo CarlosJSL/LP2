@@ -76,15 +76,15 @@ public class GeneralTree {
 	*/
 	
 	public void addFilho(Atividade newFilho){
-		System.out.println(newFilho.getActivity());
+		//System.out.println(newFilho.getActivity());
 		if(newFilho instanceof Device)
-			filhoDevice.addAtividade(((Device) newFilho).getActivity());
+			filhoDevice.addAtividade(((Device) newFilho));
 		
 		if(newFilho instanceof Http)
-			filhoHttp.addAtividade(((Http) newFilho).getActivity());
+			filhoHttp.addAtividade(((Http) newFilho));
 		
 		if(newFilho instanceof Logon)
-			filhoLogon.addAtividade(((Logon) newFilho).getActivity());
+			filhoLogon.addAtividade(((Logon) newFilho));
 	}
 	
 	/*public void removerFilho(){
