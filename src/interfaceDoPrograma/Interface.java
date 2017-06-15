@@ -12,6 +12,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 
+import models.ArquivoCSV;
+import models.ArvoreBinaria;
+import models.Usuario;
+
 public class Interface extends JFrame implements ActionListener{
 	
 	/**
@@ -31,14 +35,18 @@ public class Interface extends JFrame implements ActionListener{
 	JTextArea painelPrincipal;
 	
 	public Interface(){
+		ArvoreBinaria arvore = new ArvoreBinaria();
+		ArquivoCSV arquivo = new ArquivoCSV();
+		arvore = arquivo.recuperarEstadoAnterior("backup/usuarios.csv", "backup/device.csv", "backup/http.csv",
+				"backup/logon.csv");
+	
 		setTitle("Projeto LP2");
 	    setSize(300,300);
 	    this.setLayout(null);
-	    // Cria uma barra de menu para o JFrame
-	    JMenuBar menuBar = new JMenuBar();
-	    // Adiciona a barra de menu ao  frame
-	    setJMenuBar(menuBar);
 	    
+	    JMenuBar menuBar = new JMenuBar();
+	    setJMenuBar(menuBar);
+	    	    
 	    painelPrincipal = new JTextArea();
 	    painelPrincipal.setEditable(false);
 	    painelPrincipal.setLineWrap(true);
@@ -46,10 +54,10 @@ public class Interface extends JFrame implements ActionListener{
 	    painelPrincipal.setBounds(10, 10, 260, 220);
 	    this.add(painelPrincipal);
 	    painelPrincipal.setText("Dados registrados no sistema \n" + 
-	    "Usuarios: \n" + 
-	    "Devices: " + "\n" +
-	    "Http: " +  "\n" +
-	    "Logon: " + "\n");
+	    "Usuarios: " + arvore.contarElementos(arvore) + "\n" +
+	    "Devices: " + arvore.contarDevice(arvore) + "\n" +
+	    "Http: " + arvore.contarHttp(arvore) + "\n" +
+	    "Logon: " + arvore.contarLogon(arvore) + "\n");
 	    
 	    
 	    logMenu = new JMenu("Cadastrar Logs");

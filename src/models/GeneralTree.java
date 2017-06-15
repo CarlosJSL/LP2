@@ -54,9 +54,17 @@ public class GeneralTree {
 		this.filhoLogon = filhoLogon;
 	}
 
-	/*public int getNumeroDeFilho(){
-		return getFilho().size();
-	}*/
+	public int getNumeroDevice(){
+		return filhoDevice.getTamanho();
+	}
+	
+	public int getNumeroHttp(){
+		return filhoHttp.getTamanho();
+	}
+	
+	public int getNumeroLogon(){
+		return filhoLogon.getTamanho();
+	}
 	
 /*	public boolean hasFilho(){
 		return (getNumeroDeFilho() > 0);
@@ -70,13 +78,13 @@ public class GeneralTree {
 	public void addFilho(Atividade newFilho){
 		System.out.println(newFilho.getDate());
 		if(newFilho instanceof Device)
-			filhoDevice.addAtividade(((Device) newFilho).getActivity());
+			filhoDevice.addAtividade(((Device) newFilho).getAtividade());
 		
 		if(newFilho instanceof Http)
-			filhoHttp.addAtividade(((Http) newFilho).getUrl());
+			filhoHttp.addAtividade(((Http) newFilho).getAtividade());
 		
 		if(newFilho instanceof Logon)
-			filhoLogon.addAtividade(((Logon) newFilho).getActivity());
+			filhoLogon.addAtividade(((Logon) newFilho).getAtividade());
 	}
 	
 	/*public void removerFilho(){

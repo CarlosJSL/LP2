@@ -43,6 +43,7 @@ public class testarTree {
 		arvore = arquivo.recuperarEstadoAnterior("backup/usuarios.csv", "backup/device.csv", "backup/http.csv",
 				"backup/logon.csv");
 		arvore.percorrerInOrder();
+		System.out.println(arvore.contarElementos(arvore));
 
 	}
 

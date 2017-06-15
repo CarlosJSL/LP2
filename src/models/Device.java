@@ -1,5 +1,7 @@
 package models;
 
+import java.util.List;
+
 public class Device extends Atividade {
 	String activity;
 	
@@ -15,5 +17,9 @@ public class Device extends Atividade {
 	public String toString() {
 		return  activity ;
 	}
+
+
+
+
 
 }

@@ -1,6 +1,7 @@
 package models;
 
 public class ArvoreBinaria {
+	private int numeroDeElementos;
 	private NoArvoreBinaria raiz;
 	private ArvoreBinaria arvoreEsquerda;
 	private ArvoreBinaria arvoreDireita;
@@ -131,6 +132,46 @@ public class ArvoreBinaria {
 					return this.arvoreEsquerda.busca(user_id);
 				}
 			}
+		}
+	}
+	
+	public int contarElementos(ArvoreBinaria raiz) {
+		
+		if (raiz != null) {
+			numeroDeElementos = this.contarElementos(raiz.getArvoreEsquerda())+this.contarElementos(raiz.getArvoreDireita())+1;
+			return numeroDeElementos;
+		}else{
+			return 0;
+		}
+	}
+	
+	public int contarDevice(ArvoreBinaria raiz){
+		if (raiz != null) {
+			numeroDeElementos = this.contarDevice(raiz.getArvoreEsquerda())+this.contarDevice(raiz.getArvoreDireita()) + 
+					raiz.getRaiz().getUsuario().getNumeroDevice();
+			return numeroDeElementos;
+		}else{
+			return 0;
+		}
+	}
+	
+	public int contarHttp(ArvoreBinaria raiz){
+		if (raiz != null) {
+			numeroDeElementos = this.contarHttp(raiz.getArvoreEsquerda())+this.contarHttp(raiz.getArvoreDireita()) + 
+					raiz.getRaiz().getUsuario().getNumeroHttp();
+			return numeroDeElementos;
+		}else{
+			return 0;
+		}
+	}
+	
+	public int contarLogon(ArvoreBinaria raiz){
+		if (raiz != null) {
+			numeroDeElementos = this.contarLogon(raiz.getArvoreEsquerda())+this.contarLogon(raiz.getArvoreDireita()) + 
+					raiz.getRaiz().getUsuario().getNumeroLogon();
+			return numeroDeElementos;
+		}else{
+			return 0;
 		}
 	}
 

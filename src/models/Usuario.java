@@ -56,6 +56,18 @@ public class Usuario {
 	public void setTree(GeneralTree tree) {
 		this.tree = tree;
 	}
+	
+	public int getNumeroDevice(){
+		return tree.getNumeroDevice();
+	}
+	
+	public int getNumeroHttp(){
+		return tree.getNumeroHttp();
+	}
+	
+	public int getNumeroLogon(){
+		return tree.getNumeroLogon();
+	}
 
 	@Override
 	public String toString() {

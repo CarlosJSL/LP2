@@ -17,6 +17,10 @@ public class Atividade {
 	public List<String> getAtividade() {
 		return atividade;
 	}
+	
+	public int getTamanho(){
+		return atividade.size();
+	}
 
 	public void setAtividade(List<String> atividade) {
 		this.atividade = atividade;
@@ -54,8 +58,8 @@ public class Atividade {
 		this.pc = pc;
 	}
 	
-	public void addAtividade(String atividade){
-		this.atividade.add(atividade);
+	public void addAtividade(List<String> list){
+		this.atividade.addAll(list);
 	}
 
 	@Override
