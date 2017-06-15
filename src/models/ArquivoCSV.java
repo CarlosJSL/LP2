@@ -27,9 +27,9 @@ public class ArquivoCSV {
 		int pularPrimeiraLinhaCSV = 0;
 
 		try {
-			try{
+			try {
 				br = new BufferedReader(new FileReader(arquivoCSV));
-			}catch(FileNotFoundException e){
+			} catch (FileNotFoundException e) {
 				return pilha;
 			}
 			while ((linha = br.readLine()) != null) {
@@ -90,7 +90,7 @@ public class ArquivoCSV {
 
 		try {
 			if (informacao.peek() instanceof Usuario) {
-				//System.out.println(informacao.pop());
+				// System.out.println(informacao.pop());
 				File file = new File("backup/usuarios.csv");
 				if (file.exists()) {
 					arquivoCSV = "backup/usuarios.csv";
@@ -99,9 +99,9 @@ public class ArquivoCSV {
 					arquivoCSV = "backup/usuarios.csv";
 					StrW = new BufferedWriter(new FileWriter(arquivoCSV, false));
 					String tipoDeSistema = System.getProperty("os.name");
-					if(tipoDeSistema.contains("Windows")){
+					if (tipoDeSistema.contains("Windows")) {
 						StrW.write("employee_name,user_id,Domain,Email,Role\r\n");
-					}else{
+					} else {
 						StrW.write("employee_name,user_id,Domain,Email,Role\n");
 					}
 				}
@@ -110,11 +110,11 @@ public class ArquivoCSV {
 
 					novoUsuario = (Usuario) informacao.pop();
 					String tipoDeSistema = System.getProperty("os.name");
-					if(tipoDeSistema.contains("Windows")){
+					if (tipoDeSistema.contains("Windows")) {
 						StrW.write(novoUsuario.getEmployee_name() + "," + novoUsuario.getUser_id() + ","
 								+ novoUsuario.getDomain() + "," + novoUsuario.getEmail() + "," + novoUsuario.getRole()
 								+ "\r\n");
-					}else{
+					} else {
 						StrW.write(novoUsuario.getEmployee_name() + "," + novoUsuario.getUser_id() + ","
 								+ novoUsuario.getDomain() + "," + novoUsuario.getEmail() + "," + novoUsuario.getRole()
 								+ "\n");
@@ -131,9 +131,9 @@ public class ArquivoCSV {
 						arquivoCSV = "backup/http.csv";
 						StrW = new BufferedWriter(new FileWriter(arquivoCSV, false));
 						String tipoDeSistema = System.getProperty("os.name");
-						if(tipoDeSistema.contains("Windows")){
+						if (tipoDeSistema.contains("Windows")) {
 							StrW.write("id,date,user,pc,url\r\n");
-						}else{
+						} else {
 							StrW.write("id,date,user,pc,url\n");
 						}
 					}
@@ -147,9 +147,9 @@ public class ArquivoCSV {
 						arquivoCSV = "backup/device.csv";
 						StrW = new BufferedWriter(new FileWriter(arquivoCSV, false));
 						String tipoDeSistema = System.getProperty("os.name");
-						if(tipoDeSistema.contains("Windows")){
+						if (tipoDeSistema.contains("Windows")) {
 							StrW.write("id,date,user,pc,activy\r\n");
-						}else{
+						} else {
 							StrW.write("id,date,user,pc,activy\n");
 						}
 					}
@@ -163,9 +163,9 @@ public class ArquivoCSV {
 						arquivoCSV = "backup/logon.csv";
 						StrW = new BufferedWriter(new FileWriter(arquivoCSV, false));
 						String tipoDeSistema = System.getProperty("os.name");
-						if(tipoDeSistema.contains("Windows")){
+						if (tipoDeSistema.contains("Windows")) {
 							StrW.write("id,date,user,pc,activy\r\n");
-						}else{
+						} else {
 							StrW.write("id,date,user,pc,activy\n");
 						}
 					}
@@ -176,12 +176,12 @@ public class ArquivoCSV {
 
 					Atividade atividade = new Atividade();
 					atividade = (Atividade) informacao.pop();
-					
+
 					String tipoDeSistema = System.getProperty("os.name");
-					if(tipoDeSistema.contains("Windows")){
+					if (tipoDeSistema.contains("Windows")) {
 						StrW.write(atividade.getId() + "," + atividade.getDate() + "," + atividade.getId_user() + ","
 								+ atividade.getPc() + "," + atividade + "\r\n");
-					}else{
+					} else {
 						StrW.write(atividade.getId() + "," + atividade.getDate() + "," + atividade.getId_user() + ","
 								+ atividade.getPc() + "," + atividade + "\n");
 					}
@@ -226,43 +226,43 @@ public class ArquivoCSV {
 			arvoreBinaria.inserir(noUsuario);
 		}
 
-		pilhaAtividade = lerCSV(DeviceCSV);
-
-		while (!pilhaAtividade.isEmpty()) {
-			Atividade atividade = new Atividade();
-
-			atividade = (Atividade) pilhaAtividade.pop();
-
-			Usuario usuarioJaCadastrado = new Usuario();
-			usuarioJaCadastrado = arvoreBinaria.busca(atividade.getId_user().substring(5));
-			if (usuarioJaCadastrado != null) {
-				System.out.println(usuarioJaCadastrado);
-				usuarioJaCadastrado.getTree().addFilho(atividade);
-
-				NoArvoreBinaria no = new NoArvoreBinaria(usuarioJaCadastrado);
-				arvoreBinaria.inserir(no);
-			}
-
-		}
-
-		pilhaAtividade = lerCSV(HttpCSV);
-
-		while (!pilhaAtividade.isEmpty()) {
-			Atividade atividade = new Atividade();
-
-			atividade = (Atividade) pilhaAtividade.pop();
-
-			Usuario usuarioJaCadastrado = new Usuario();
-			usuarioJaCadastrado = arvoreBinaria.busca(atividade.getId_user().substring(5));
-			if (usuarioJaCadastrado != null) {
-				System.out.println(usuarioJaCadastrado);
-				usuarioJaCadastrado.getTree().addFilho(atividade);
-
-				NoArvoreBinaria no = new NoArvoreBinaria(usuarioJaCadastrado);
-				arvoreBinaria.inserir(no);
-			}
-
-		}
+//		pilhaAtividade = lerCSV(DeviceCSV);
+//
+//		while (!pilhaAtividade.isEmpty()) {
+//			Atividade atividade = new Atividade();
+//
+//			atividade = (Atividade) pilhaAtividade.pop();
+//
+//			Usuario usuarioJaCadastrado = new Usuario();
+//			usuarioJaCadastrado = arvoreBinaria.busca(atividade.getId_user().substring(5));
+//			if (usuarioJaCadastrado != null) {
+//
+//				usuarioJaCadastrado.getTree().addFilho(atividade);
+//
+//				NoArvoreBinaria no = new NoArvoreBinaria(usuarioJaCadastrado);
+//				arvoreBinaria.inserir(no);
+//			}
+//
+//		}
+//
+//		pilhaAtividade = lerCSV(HttpCSV);
+//
+//		while (!pilhaAtividade.isEmpty()) {
+//			Atividade atividade = new Atividade();
+//
+//			atividade = (Atividade) pilhaAtividade.pop();
+//
+//			Usuario usuarioJaCadastrado = new Usuario();
+//			usuarioJaCadastrado = arvoreBinaria.busca(atividade.getId_user().substring(5));
+//			if (usuarioJaCadastrado != null) {
+//
+//				usuarioJaCadastrado.getTree().addFilho(atividade);
+//
+//				NoArvoreBinaria no = new NoArvoreBinaria(usuarioJaCadastrado);
+//				arvoreBinaria.inserir(no);
+//			}
+//
+//		}
 
 		pilhaAtividade = lerCSV(LogonCSV);
 
@@ -274,7 +274,7 @@ public class ArquivoCSV {
 			Usuario usuarioJaCadastrado = new Usuario();
 			usuarioJaCadastrado = arvoreBinaria.busca(atividade.getId_user().substring(5));
 			if (usuarioJaCadastrado != null) {
-				System.out.println(usuarioJaCadastrado);
+
 				usuarioJaCadastrado.getTree().addFilho(atividade);
 
 				NoArvoreBinaria no = new NoArvoreBinaria(usuarioJaCadastrado);

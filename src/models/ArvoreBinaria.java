@@ -135,6 +135,12 @@ public class ArvoreBinaria {
 		}
 	}
 	
+	public int getHeight(ArvoreBinaria root) {
+		if (root == null)
+			return 0;
+		return Math.max(getHeight(root.getArvoreEsquerda()), getHeight(root.getArvoreDireita())) + 1;
+	}
+	
 	public int contarElementos(ArvoreBinaria raiz) {
 		
 		if (raiz != null) {
