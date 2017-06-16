@@ -9,6 +9,7 @@ import java.util.Stack;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -52,15 +53,20 @@ public class InterfaceAddLog extends JFrame implements ActionListener{
 		if (evento.getSource() == botaoAddLog){
 			String arquivo = textAddLog.getText();
 			textAddLog.setText(" ");
-			//System.out.println(arquivo);
-			//A função de lerCSV e gravarCSV deve ficar aqui!
+			//A funï¿½ï¿½o de lerCSV e gravarCSV deve ficar aqui!
 			Stack informacao = new Stack();
 			ArquivoCSV newArquivo = new ArquivoCSV();
 			
 			informacao = newArquivo.lerCSV(arquivo);
-			newArquivo.gravarCSV(informacao);
-			dispose();
-			//Deve usar o nome do arquivo digitado no textFild para chamar o a função lerCSV e passar o resultado para gravarCSV
+			
+			if(!informacao.isEmpty()){
+				newArquivo.gravarCSV(informacao);
+				dispose();
+				
+			}else{
+				JOptionPane.showMessageDialog(null, "Arquivo nÃ£o existe!");
+			}
+			//Deve usar o nome do arquivo digitado no textFild para chamar o a funï¿½ï¿½o lerCSV e passar o resultado para gravarCSV
 		}
 		
 	}

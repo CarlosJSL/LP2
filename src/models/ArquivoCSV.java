@@ -31,6 +31,7 @@ public class ArquivoCSV {
 			try {
 				br = new BufferedReader(new FileReader(arquivoCSV));
 			} catch (FileNotFoundException e) {
+//				e.printStackTrace();
 				return pilha;
 			}
 			while ((linha = br.readLine()) != null) {
