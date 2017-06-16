@@ -21,7 +21,7 @@ public class TreeGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public TreeGUI(ArvoreBinaria tree) {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 500);
 
 		contentPane = new JPanel();
@@ -33,6 +33,7 @@ public class TreeGUI extends JFrame {
 		setContentPane(contentPane);
 		this.tree = tree;
 		setVisible(true);
+		
 	}
 
 }

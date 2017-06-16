@@ -36,9 +36,10 @@ public class testarTree {
 
 		arvore = arquivo.recuperarEstadoAnterior("backup/usuarios.csv", "backup/device.csv", "backup/http.csv",
 				"backup/logon.csv");
-
-		System.out.println(arvore.busca("IRC0991").getTree().getFilhoDevice().getAtividade().size());
-		TreeGUI tree = new TreeGUI(arvore);
+		arvore.busca("CGM0319").getTree().getFilhoHttp().carregarHistograma();
+		arvore.busca("CGM0319").getTree().getFilhoHttp().imprimirHistograma();
+		System.out.println(arvore.busca("CGM0319").getTree().getFilhoHttp().getAtividade().size());
+		
 
 	}
 
