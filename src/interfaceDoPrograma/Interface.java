@@ -2,6 +2,7 @@ package interfaceDoPrograma;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Stack;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -33,10 +34,26 @@ public class Interface extends JFrame implements ActionListener{
 	JMenuItem mItem4;
 	
 	JTextArea painelPrincipal;
+	ArvoreBinaria arvore = new ArvoreBinaria();
 	
 	public Interface(){
-		ArvoreBinaria arvore = new ArvoreBinaria();
+		
 		ArquivoCSV arquivo = new ArquivoCSV();
+		
+		Stack informacao = new Stack();
+
+		informacao = arquivo.lerCSV("logUsuario.csv");
+		arquivo.gravarCSV(informacao);
+
+		informacao = arquivo.lerCSV("device.csv");
+		arquivo.gravarCSV(informacao);
+
+		informacao = arquivo.lerCSV("http2.csv");
+		arquivo.gravarCSV(informacao);
+
+		informacao = arquivo.lerCSV("logon2.csv");
+		arquivo.gravarCSV(informacao);
+
 		arvore = arquivo.recuperarEstadoAnterior("backup/usuarios.csv", "backup/device.csv", "backup/http.csv",
 				"backup/logon.csv");
 	
@@ -98,7 +115,7 @@ public class Interface extends JFrame implements ActionListener{
 			addLog.setVisible(true);
 		}
 		if (evento.getSource() == mItem2){
-			
+			TreeGUI tree = new TreeGUI(arvore);
 		}
 		if (evento.getSource() == mItem3){
 			ArvoreBinaria arvore = new ArvoreBinaria();
@@ -113,9 +130,11 @@ public class Interface extends JFrame implements ActionListener{
 		    "Para atualizar a pagina clique em RELATORIO -> GERAL");
 		}
 		if (evento.getSource() == mItem4){
-			//chamar função gravarCSV;
+			//chamar funï¿½ï¿½o gravarCSV;
 			System.exit(0);
 		}
+		
+		
 	}
 }
 

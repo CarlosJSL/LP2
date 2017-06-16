@@ -49,34 +49,9 @@ class DrawTree extends JPanel {
 	protected void paintComponent(Graphics g) {
 
 		g.setFont(new Font("Tahoma", Font.BOLD, 20));
-		// g.drawString(String.valueOf(tree.root.data), this.getWidth()/2, 30);
-
-		// DrawNode(g, tree,100, 50,2);
 
 		DrawTree(g, 0, getWidth(), 0, getHeight() / tree.getHeight(tree), tree);
 	}
-
-	// public void DrawNode(Graphics g,ArvoreBinaria n,int w,int h,int q){
-	// g.setFont(new Font("Tahoma", Font.BOLD, 20));
-	//
-	// if(n!=null){
-	//
-	// g.drawString(String.valueOf(n.getRaiz().getUsuario().getUser_id()),
-	// (this.getWidth()/q)+w, h);
-	// if(n.getArvoreEsquerda() !=null)
-	// DrawNode(g, n.getArvoreEsquerda(), -w, h*2, q);
-	// //DrawNode(g, n.left, -w, h*2, q);
-	// //g.drawString(String.valueOf(n.left.data), (this.getWidth()/q)-w, h+50);
-	// if(n.getArvoreDireita() !=null)
-	// DrawNode(g, n.getArvoreDireita(), w*2, h*2, q);
-	// //g.drawString(String.valueOf(n.right.data), (this.getWidth()/q)+w,
-	// h+50);
-	// }
-	//
-	//
-	//
-	//
-	// }
 
 	public void DrawTree(Graphics g, int StartWidth, int EndWidth, int StartHeight, int Level, ArvoreBinaria node) {
 

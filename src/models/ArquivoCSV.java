@@ -23,7 +23,7 @@ public class ArquivoCSV {
 		Stack pilha = new Stack<>();
 		Atividade atividade;
 		FuncaoFabrica funcaoFabrica = new FuncaoFabrica();
-		Usuario teste = new Usuario();
+
 
 		int pularPrimeiraLinhaCSV = 0;
 
@@ -81,13 +81,8 @@ public class ArquivoCSV {
 
 	public void gravarCSV(Stack informacao) {
 		BufferedWriter StrW = null;
-		String linha = "";
-		String csvDivisor = ",";
 		String arquivoCSV = "";
-		ArvoreBinaria arvoreBinaria = new ArvoreBinaria();
 
-		Usuario teste = new Usuario();
-		
 		try {
 			if (informacao.peek() instanceof Usuario) {
 				// System.out.println(informacao.pop());
@@ -188,7 +183,7 @@ public class ArquivoCSV {
 				}
 
 			}
-		} catch (EmptyStackException e){
+		} catch (EmptyStackException e) {
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -200,7 +195,6 @@ public class ArquivoCSV {
 
 			if (StrW != null) {
 				try {
-
 					StrW.close();
 
 				} catch (IOException e) {

@@ -16,31 +16,28 @@ public class testarTree {
 
 	public static void main(String[] args) {
 
-
 		Stack informacao = new Stack();
 
 		ArvoreBinaria arvore = new ArvoreBinaria();
 
-
 		ArquivoCSV arquivo = new ArquivoCSV();
 
+		informacao = arquivo.lerCSV("logUsuario.csv");
+		arquivo.gravarCSV(informacao);
 
-		informacao = arquivo.lerCSV("logUsuarioTeste.csv");
+		informacao = arquivo.lerCSV("device.csv");
 		arquivo.gravarCSV(informacao);
-		
-		informacao = arquivo.lerCSV("device2.csv");
-		arquivo.gravarCSV(informacao);
-		
+
 		informacao = arquivo.lerCSV("http2.csv");
 		arquivo.gravarCSV(informacao);
-		
+
 		informacao = arquivo.lerCSV("logon2.csv");
 		arquivo.gravarCSV(informacao);
-		
+
 		arvore = arquivo.recuperarEstadoAnterior("backup/usuarios.csv", "backup/device.csv", "backup/http.csv",
 				"backup/logon.csv");
-																							
-		System.out.println(arvore.busca("IRC0991").getTree().getFilhoLogon().getAtividade().size());//get(0) retorna a primeira atividade de logon
+
+		System.out.println(arvore.busca("IRC0991").getTree().getFilhoDevice().getAtividade().size());
 		TreeGUI tree = new TreeGUI(arvore);
 
 	}
