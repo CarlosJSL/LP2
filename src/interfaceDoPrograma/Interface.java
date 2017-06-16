@@ -9,6 +9,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 
 import models.ArquivoCSV;
 import models.ArvoreBinaria;
@@ -105,8 +107,13 @@ public class Interface extends JFrame implements ActionListener {
 
 		if (evento.getSource() == mItem1) {
 			
-			InterfaceAddLog addLog = new InterfaceAddLog();
-			addLog.setVisible(true);
+//			InterfaceAddLog addLog = new InterfaceAddLog();
+//			addLog.setVisible(true);
+			JFrame frame = new JFrame("FileChooserDemo");
+			
+			frame.add(new FileChooserDemo());
+			frame.pack();
+			frame.setVisible(true);
 		}
 		if (evento.getSource() == mItem2) {
 			if (arvore.getRaiz() != null) {
