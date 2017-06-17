@@ -16,45 +16,37 @@ import models.ArvoreBinaria;
 
 public class Interface extends JFrame implements ActionListener {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	JMenu logMenu;
 	JMenu relaMenu;
 	JMenu arvMenu;
 	JMenu sairMenu;
 	JMenu histograma;
-	
+
 	JMenuItem mItem1;
 	JMenuItem mItem2;
 	JMenuItem mItem3;
 	JMenuItem mItem4;
 	JMenuItem mItem5;
-	
+
 	JTextArea painelPrincipal;
 	ArvoreBinaria arvore = new ArvoreBinaria();
 
 	public Interface() {
-
 		ArquivoCSV arquivo = new ArquivoCSV();
 
-		 Stack informacao = new Stack();
+		Stack informacao = new Stack();
 		//
-		 informacao = arquivo.lerCSV("logUsuario.csv");
-		 arquivo.gravarCSV(informacao);
+		// informacao = arquivo.lerCSV("logUsuarioTeste.csv");
+		// arquivo.gravarCSV(informacao);
 		//
-		 informacao = arquivo.lerCSV("device.csv");
-		 arquivo.gravarCSV(informacao);
+		// informacao = arquivo.lerCSV("device.csv");
+		// arquivo.gravarCSV(informacao);
 		//
 		// informacao = arquivo.lerCSV("http2.csv");
 		// arquivo.gravarCSV(informacao);
 		//
-		 informacao = arquivo.lerCSV("logon.csv");
-		 arquivo.gravarCSV(informacao);
-
-		arvore = arquivo.recuperarEstadoAnterior("backup/usuarios.csv", "backup/device.csv", "backup/http.csv",
-				"backup/logon.csv");
+		// informacao = arquivo.lerCSV("logon.csv");
+		// arquivo.gravarCSV(informacao);
 
 		setTitle("Projeto LP2");
 		setBounds(600, 200, 600, 600);
@@ -108,55 +100,54 @@ public class Interface extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent evento) {
 
-		// Interface tela = new Interface();
-		// tela.setVisible(true);
-
 		if (evento.getSource() == mItem1) {
-			
-//			InterfaceAddLog addLog = new InterfaceAddLog();
-//			addLog.setVisible(true);
 			JFrame frame = new JFrame("FileChooserDemo");
-			
-			frame.add(new FileChooserDemo());
+
+			frame.add(new EscolherDiretorio());
 			frame.pack();
 			frame.setVisible(true);
 		}
 		if (evento.getSource() == mItem2) {
+			ArquivoCSV arquivo = new ArquivoCSV();
+
+			arvore = arquivo.recuperarEstadoAnterior("backup/usuarios.csv", "backup/device.csv", "backup/http.csv",
+					"backup/logon.csv");
+
 			if (arvore.getRaiz() != null) {
 				TreeGUI tree = new TreeGUI(arvore);
+
 			} else {
 				JOptionPane.showMessageDialog(null, "Não existem registros para serem exibidos!");
+
 			}
 		}
 		if (evento.getSource() == mItem3) {
-			
 			ArquivoCSV arquivo = new ArquivoCSV();
-			if (arvore.getRaiz() != null) {
-				arvore = arquivo.recuperarEstadoAnterior("backup/usuarios.csv", "backup/device.csv", "backup/http.csv",
-						"backup/logon.csv");
 
+			arvore = arquivo.recuperarEstadoAnterior("backup/usuarios.csv", "backup/device.csv", "backup/http.csv",
+					"backup/logon.csv");
+			System.out.println();
+			if (arvore.getRaiz() != null) {
 				painelPrincipal.setText("Usuarios: " + arvore.contarElementos(arvore) + "\n" + "Devices: "
 						+ arvore.contarDevice(arvore) + "\n" + "Http: " + arvore.contarHttp(arvore) + "\n" + "Logon: "
 						+ arvore.contarLogon(arvore) + "\n" + "Para atualizar a pagina clique em RELATORIO -> GERAL");
+
 			} else {
 				JOptionPane.showMessageDialog(null, "Não existem registros para serem exibidos!");
+
 			}
 		}
 		if (evento.getSource() == mItem4) {
-			// chamar fun��o gravarCSV;
 			System.exit(0);
+
 		}
 		if (evento.getSource() == mItem5) {
-			
-			InterfaceAddLog addLog = new InterfaceAddLog(arvore);
-			addLog.setVisible(true);
-//			if (arvore.getRaiz() != null) {
-//				
-//			}else{
-//				
-//			}
-//			new TesteChart().setVisible(true);
-		}
+			ArquivoCSV arquivo = new ArquivoCSV();
+			arvore = arquivo.recuperarEstadoAnterior("backup/usuarios.csv", "backup/device.csv", "backup/http.csv",
+					"backup/logon.csv");
+			BuscaUsuario buscaUsuario = new BuscaUsuario(arvore);
+			buscaUsuario.setVisible(true);
 
+		}
 	}
 }
