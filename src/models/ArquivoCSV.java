@@ -241,25 +241,25 @@ public class ArquivoCSV {
 
 		}
 
-		pilhaAtividade = lerCSV(HttpCSV);
-
-		while (!pilhaAtividade.isEmpty()) {
-			Atividade atividade = new Atividade();
-
-			atividade = (Atividade) pilhaAtividade.pop();
-
-			Usuario usuarioJaCadastrado = new Usuario();
-			usuarioJaCadastrado = arvoreBinaria.busca(atividade.getId_user().substring(5));
-			if (usuarioJaCadastrado != null) {
-
-				usuarioJaCadastrado.getTree().addFilho(atividade);
-
-				NoArvoreBinaria no = new NoArvoreBinaria(usuarioJaCadastrado);
-				arvoreBinaria.inserir(no);
-			}
-
-		}
-
+//		pilhaAtividade = lerCSV(HttpCSV);
+//
+//		while (!pilhaAtividade.isEmpty()) {
+//			Atividade atividade = new Atividade();
+//
+//			atividade = (Atividade) pilhaAtividade.pop();
+//
+//			Usuario usuarioJaCadastrado = new Usuario();
+//			usuarioJaCadastrado = arvoreBinaria.busca(atividade.getId_user().substring(5));
+//			if (usuarioJaCadastrado != null) {
+//
+//				usuarioJaCadastrado.getTree().addFilho(atividade);
+//
+//				NoArvoreBinaria no = new NoArvoreBinaria(usuarioJaCadastrado);
+//				arvoreBinaria.inserir(no);
+//			}
+//
+//		}
+//
 		pilhaAtividade = lerCSV(LogonCSV);
 
 		while (!pilhaAtividade.isEmpty()) {

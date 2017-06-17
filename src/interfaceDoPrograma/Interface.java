@@ -2,6 +2,7 @@ package interfaceDoPrograma;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Stack;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -9,8 +10,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
 
 import models.ArquivoCSV;
 import models.ArvoreBinaria;
@@ -25,12 +24,14 @@ public class Interface extends JFrame implements ActionListener {
 	JMenu relaMenu;
 	JMenu arvMenu;
 	JMenu sairMenu;
-
+	JMenu histograma;
+	
 	JMenuItem mItem1;
 	JMenuItem mItem2;
 	JMenuItem mItem3;
 	JMenuItem mItem4;
-
+	JMenuItem mItem5;
+	
 	JTextArea painelPrincipal;
 	ArvoreBinaria arvore = new ArvoreBinaria();
 
@@ -38,19 +39,19 @@ public class Interface extends JFrame implements ActionListener {
 
 		ArquivoCSV arquivo = new ArquivoCSV();
 
-		// Stack informacao = new Stack();
+		 Stack informacao = new Stack();
 		//
-		// informacao = arquivo.lerCSV("logUsuario.csv");
-		// arquivo.gravarCSV(informacao);
+		 informacao = arquivo.lerCSV("logUsuario.csv");
+		 arquivo.gravarCSV(informacao);
 		//
-		// informacao = arquivo.lerCSV("device.csv");
-		// arquivo.gravarCSV(informacao);
+		 informacao = arquivo.lerCSV("device.csv");
+		 arquivo.gravarCSV(informacao);
 		//
 		// informacao = arquivo.lerCSV("http2.csv");
 		// arquivo.gravarCSV(informacao);
 		//
-		// informacao = arquivo.lerCSV("logon2.csv");
-		// arquivo.gravarCSV(informacao);
+		 informacao = arquivo.lerCSV("logon.csv");
+		 arquivo.gravarCSV(informacao);
 
 		arvore = arquivo.recuperarEstadoAnterior("backup/usuarios.csv", "backup/device.csv", "backup/http.csv",
 				"backup/logon.csv");
@@ -75,28 +76,33 @@ public class Interface extends JFrame implements ActionListener {
 		logMenu = new JMenu("Cadastrar Logs");
 		relaMenu = new JMenu("Relatorios");
 		arvMenu = new JMenu("Visualizar");
+		histograma = new JMenu("Histograma");
 		sairMenu = new JMenu("Sair");
 
 		menuBar.add(logMenu);
 		menuBar.add(relaMenu);
 		menuBar.add(arvMenu);
+		menuBar.add(histograma);
 		menuBar.add(sairMenu);
 
 		// definindo os itens de menu
 		mItem1 = new JMenuItem("Logs", 69);
 		mItem2 = new JMenuItem("Arvore", 70);
 		mItem3 = new JMenuItem("Geral");
+		mItem5 = new JMenuItem("Selecionar Usuário");
 		mItem4 = new JMenuItem("Salvar e sair");
 
 		logMenu.add(mItem1);
 		arvMenu.add(mItem2);
 		relaMenu.add(mItem3);
 		sairMenu.add(mItem4);
+		histograma.add(mItem5);
 
 		mItem1.addActionListener(this);
 		mItem2.addActionListener(this);
 		mItem3.addActionListener(this);
 		mItem4.addActionListener(this);
+		mItem5.addActionListener(this);
 	}
 
 	@Override
@@ -123,7 +129,7 @@ public class Interface extends JFrame implements ActionListener {
 			}
 		}
 		if (evento.getSource() == mItem3) {
-			ArvoreBinaria arvore = new ArvoreBinaria();
+			
 			ArquivoCSV arquivo = new ArquivoCSV();
 			if (arvore.getRaiz() != null) {
 				arvore = arquivo.recuperarEstadoAnterior("backup/usuarios.csv", "backup/device.csv", "backup/http.csv",
@@ -139,6 +145,17 @@ public class Interface extends JFrame implements ActionListener {
 		if (evento.getSource() == mItem4) {
 			// chamar funï¿½ï¿½o gravarCSV;
 			System.exit(0);
+		}
+		if (evento.getSource() == mItem5) {
+			
+			InterfaceAddLog addLog = new InterfaceAddLog(arvore);
+			addLog.setVisible(true);
+//			if (arvore.getRaiz() != null) {
+//				
+//			}else{
+//				
+//			}
+//			new TesteChart().setVisible(true);
 		}
 
 	}

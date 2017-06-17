@@ -5,69 +5,71 @@ import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Stack;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import models.ArquivoCSV;
+import models.ArvoreBinaria;
+import models.Usuario;
 
-
-public class InterfaceAddLog extends JFrame implements ActionListener{
+public class InterfaceAddLog extends JFrame implements ActionListener {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel controle;
 	private JButton botaoAddLog;
+
 	private JTextField textAddLog;
-	
-	public InterfaceAddLog() {
+	private ArvoreBinaria arvoreUsuario = null;
+
+	public InterfaceAddLog(ArvoreBinaria arvore) {
+		arvoreUsuario = arvore;
 		Container container = this.getContentPane();
 		container.setLayout(new BorderLayout());
-		
+
 		controle = new JPanel();
 		controle.setLayout(new GridLayout(2, 1));
-		
-		botaoAddLog = new JButton("Adicionar");
+
+		botaoAddLog = new JButton("Buscar");
+
 		textAddLog = new JTextField();
+
 		controle.add(textAddLog);
 		controle.add(botaoAddLog);
-		
+
 		container.add(BorderLayout.CENTER, controle);
 		botaoAddLog.addActionListener(this);
-		
-		//JFrame addLog = new JFrame("Adicionar aquivo de log");
-		
-		setSize(200,100);
+
+		setSize(400, 100);
 		setResizable(false);
-		setTitle("Adicionar aquivo de log");
-				
+		setTitle("Buscar Usuario");
+
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent evento) {
-		if (evento.getSource() == botaoAddLog){
-			String arquivo = textAddLog.getText();
-			textAddLog.setText(" ");
-			//A funï¿½ï¿½o de lerCSV e gravarCSV deve ficar aqui!
-			Stack informacao = new Stack();
-			ArquivoCSV newArquivo = new ArquivoCSV();
-			
-			informacao = newArquivo.lerCSV(arquivo);
-			
-			if(!informacao.isEmpty()){
-				newArquivo.gravarCSV(informacao);
-				dispose();
-				
-			}else{
-				JOptionPane.showMessageDialog(null, "Arquivo nÃ£o existe!");
+		if (evento.getSource() == botaoAddLog) {
+			String idUsuario = textAddLog.getText();
+			Usuario usuario = new Usuario();
+			// textAddLog.setText(" ");
+
+			usuario = arvoreUsuario.busca(idUsuario);
+
+			if (usuario == null) {
+				textAddLog.setText("Usuario não existe!");
+
+			} else {
+
+				new Grafico(usuario.getTree().getFilhoDevice()).setVisible(true);
+				new Grafico(usuario.getTree().getFilhoLogon()).setVisible(true);
+				// new
+				// TesteChart(usuario.getTree().getFilhoHttp()).setVisible(true);
 			}
-			//Deve usar o nome do arquivo digitado no textFild para chamar o a funï¿½ï¿½o lerCSV e passar o resultado para gravarCSV
+
 		}
-		
+
 	}
 }
