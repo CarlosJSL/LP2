@@ -10,19 +10,29 @@ import java.util.Stack;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import models.ArquivoCSV;
 
+/**Classe que contém métodos responsáveis por escolher um arquivo para o usuário
+ * @author Carlos José
+ * @author Judson Matheus
+ */
 public class EscolherDiretorio extends JPanel implements ActionListener {
 	static private final String novaLinha = "\n";
 	JButton openButton, saveButton;
 	JTextArea log;
 	JFileChooser fc;
-
+	
+	/**
+	  * Construtor que quando chama serve para que o
+	  * usuário escolha o seu arquivo que deseja abrir e cadastrar
+	  * 
+	  * @author            Carlos José
+	  * @author            Judson Matheus
+	  */
 	public EscolherDiretorio() {
 		super(new BorderLayout());
 
@@ -46,7 +56,15 @@ public class EscolherDiretorio extends JPanel implements ActionListener {
 		add(buttonPanel, BorderLayout.PAGE_START);
 		add(logScrollPane, BorderLayout.CENTER);
 	}
-
+	
+	/**
+	  * Função que escuta um evento que é disparado quando o usuário
+	  * aperta o botão
+	  * 
+	  * @param	e ActionEvent -	Evento de clique
+	  * @author            Carlos José
+	  * @author            Judson Matheus
+	  */
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource() == openButton) {
@@ -76,12 +94,4 @@ public class EscolherDiretorio extends JPanel implements ActionListener {
 		}
 	}
 
-	private static void createAndShowGUI() {
-		JFrame frame = new JFrame("FileChooserDemo");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.add(new EscolherDiretorio());
-		frame.pack();
-		frame.setVisible(true);
-
-	}
 }

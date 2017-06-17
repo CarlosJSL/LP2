@@ -1,10 +1,13 @@
 package interfaceDoPrograma;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Stack;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -14,6 +17,10 @@ import javax.swing.JTextArea;
 import models.ArquivoCSV;
 import models.ArvoreBinaria;
 
+/**Classe que inicia toda a interface do programa
+ * @author Carlos José
+ * @author Judson Matheus
+ */
 public class Interface extends JFrame implements ActionListener {
 
 	JMenu logMenu;
@@ -30,23 +37,14 @@ public class Interface extends JFrame implements ActionListener {
 
 	JTextArea painelPrincipal;
 	ArvoreBinaria arvore = new ArvoreBinaria();
-
+	
+	/**
+	  * Construtor que inicia a interface do programa
+	  */
 	public Interface() {
 		ArquivoCSV arquivo = new ArquivoCSV();
 
 		Stack informacao = new Stack();
-		//
-		// informacao = arquivo.lerCSV("logUsuarioTeste.csv");
-		// arquivo.gravarCSV(informacao);
-		//
-		// informacao = arquivo.lerCSV("device.csv");
-		// arquivo.gravarCSV(informacao);
-		//
-		// informacao = arquivo.lerCSV("http2.csv");
-		// arquivo.gravarCSV(informacao);
-		//
-		// informacao = arquivo.lerCSV("logon.csv");
-		// arquivo.gravarCSV(informacao);
 
 		setTitle("Projeto LP2");
 		setBounds(600, 200, 600, 600);
@@ -81,7 +79,7 @@ public class Interface extends JFrame implements ActionListener {
 		mItem1 = new JMenuItem("Logs", 69);
 		mItem2 = new JMenuItem("Arvore", 70);
 		mItem3 = new JMenuItem("Geral");
-		mItem5 = new JMenuItem("Selecionar Usu�rio");
+		mItem5 = new JMenuItem("Selecionar Usu�rio");
 		mItem4 = new JMenuItem("Salvar e sair");
 
 		logMenu.add(mItem1);
@@ -96,7 +94,14 @@ public class Interface extends JFrame implements ActionListener {
 		mItem4.addActionListener(this);
 		mItem5.addActionListener(this);
 	}
-
+	
+	/**
+	  * Função que espera um evento de clique 
+	  * 
+	  * @param	evento ActionEvent - Evento que será acionado quando se aperta um botão	
+	  * @author            Carlos José
+	  * @author            Judson Matheus
+	  */
 	@Override
 	public void actionPerformed(ActionEvent evento) {
 
@@ -114,6 +119,7 @@ public class Interface extends JFrame implements ActionListener {
 					"backup/logon.csv");
 
 			if (arvore.getRaiz() != null) {
+
 				TreeGUI tree = new TreeGUI(arvore);
 
 			} else {
@@ -124,9 +130,21 @@ public class Interface extends JFrame implements ActionListener {
 		if (evento.getSource() == mItem3) {
 			ArquivoCSV arquivo = new ArquivoCSV();
 
+			JFrame frame = new JFrame("Loading");
+
+			ImageIcon loading = new ImageIcon("img/loading.gif");
+			frame.add(new JLabel("loading... ", loading, JLabel.CENTER));
+
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			frame.setBounds(400, 400, 1200, 200);
+			frame.setUndecorated(true);
+			frame.getContentPane().setBackground(new Color(1.0f, 1.0f, 1.0f, 0.0f));
+			frame.setBackground(new Color(1.0f, 1.0f, 1.0f, 0.0f));
+
 			arvore = arquivo.recuperarEstadoAnterior("backup/usuarios.csv", "backup/device.csv", "backup/http.csv",
 					"backup/logon.csv");
-			System.out.println();
+			frame.setVisible(false);
+
 			if (arvore.getRaiz() != null) {
 				painelPrincipal.setText("Usuarios: " + arvore.contarElementos(arvore) + "\n" + "Devices: "
 						+ arvore.contarDevice(arvore) + "\n" + "Http: " + arvore.contarHttp(arvore) + "\n" + "Logon: "
@@ -143,8 +161,10 @@ public class Interface extends JFrame implements ActionListener {
 		}
 		if (evento.getSource() == mItem5) {
 			ArquivoCSV arquivo = new ArquivoCSV();
+
 			arvore = arquivo.recuperarEstadoAnterior("backup/usuarios.csv", "backup/device.csv", "backup/http.csv",
 					"backup/logon.csv");
+
 			BuscaUsuario buscaUsuario = new BuscaUsuario(arvore);
 			buscaUsuario.setVisible(true);
 

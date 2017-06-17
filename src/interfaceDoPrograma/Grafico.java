@@ -14,8 +14,20 @@ import models.Http;
 import models.Logon;
 import models.Usuario;
 
+/**Classe que contém métodos responsáveis por desenhar gráficos na tela
+ * @author Carlos José
+ * @author Judson Matheus
+ */
 public class Grafico extends JFrame {
-
+	
+	 /**
+	  * Cria um gráfico de dispositivo acessados pelo usuário
+	  * 
+	  * @param usuario Usuario - Usuário que acessou o dispositivo
+	  * @param device  Device - Tipo de atividade que o usuário fez
+	  * @author            Carlos José
+	  * @author            Judson Matheus
+	  */
 	public Grafico(Usuario usuario, Device device) {
 		super("Grafico Device");
 
@@ -23,7 +35,7 @@ public class Grafico extends JFrame {
 
 		final XYSeries deviceSeries = new XYSeries("Acessos por hora | Total: " + device.getAtividade().size()
 				+ "| Nome do usuario:" + usuario.getEmployee_name());
-
+		
 		for (int hora = 0; hora < 23; hora++) {
 			deviceSeries.add(hora, device.buscaPorIntervalo(hora));
 		}
@@ -39,7 +51,15 @@ public class Grafico extends JFrame {
 
 		this.pack();
 	}
-
+	
+	 /**
+	  * Cria um gráfico de url's acessadas pelo usuário
+	  * 
+	  * @param usuario Usuario - Usuário que acessou o dispositivo
+	  * @param http Http - Tipo de atividade que o usuário fez
+	  * @author            Carlos José
+	  * @author            Judson Matheus
+	  */
 	public Grafico(Usuario usuario, Http http) {
 		super("Grafico Http");
 		http.carregarHistograma();
@@ -59,7 +79,15 @@ public class Grafico extends JFrame {
 		this.add(new ChartPanel(httpChart));
 		this.pack();
 	}
-
+	
+	/**
+	  * Cria um gráfico de logon's realizados pelo usuário
+	  * 
+	  * @param usuario Usuario - Usuário que acessou o dispositivo
+	  * @param logon Logon - Tipo de atividade que o usuário fez
+	  * @author            Carlos José
+	  * @author            Judson Matheus
+	  */
 	public Grafico(Usuario usuario, Logon logon) {
 		super("Grafico Logon");
 

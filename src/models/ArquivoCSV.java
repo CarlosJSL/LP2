@@ -11,8 +11,20 @@ import java.io.IOException;
 import java.util.EmptyStackException;
 import java.util.Stack;
 
+/**Classe que contém métodos para leitura e gravação em arquivos csv
+ * @author Carlos José
+ * @author Judson Matheus
+ */
 public class ArquivoCSV {
-
+	
+	/**
+	  * Retorna uma pilha contendo atividades ou usuários dependendo do arquivo csv lido.
+	  * 
+	  * @param nomeArquivo String - Nome do arquivo a ser lido
+	  * @return Stack -  Pilha contendo todas as atividades ou usuarios do csv lido 
+	  * @author            Carlos José
+	  * @author            Judson Matheus
+	  */
 	public Stack lerCSV(String nomeArquivo) {
 		String arquivoCSV = nomeArquivo;
 		BufferedReader br = null;
@@ -83,7 +95,14 @@ public class ArquivoCSV {
 		}
 		return pilha;
 	}
-
+	
+	/**
+	  * Grava as informações lidas anteriormente num arquivo csv
+	  * 
+	  * @param informacao Stack -  Pilha contendo as informações a serem gravados no arquivo
+	  * @author            Carlos José
+	  * @author            Judson Matheus
+	  */
 	public void gravarCSV(Stack informacao) {
 		BufferedWriter StrW = null;
 		String arquivoCSV = "";
@@ -224,7 +243,18 @@ public class ArquivoCSV {
 			}
 		}
 	}
-
+	
+	/**
+	  * Lê os arquivos csv's gravados e guarda as informações na arvore binaria
+	  * 
+	  * @param usuarioCSV  String - CSV contendo a lista usuários
+	  * @param DeviceCSV   String - CSV contendo atividades do tipo device  	
+	  * @param HttpCSV	   String- CSV contendo atividades do tipo logon	
+	  * @param LogonCSV	   String - CSV contendo atividades do tipo http
+	  * @return	ArvoreBinaria -  arvoreBinaria - arvore binaria contendo os usuarios cadastrados relacionados com suas respectivas atividades	
+	  * @author            Carlos José
+	  * @author            Judson Matheus
+	  */
 	public ArvoreBinaria recuperarEstadoAnterior(String usuarioCSV, String DeviceCSV, String HttpCSV, String LogonCSV) {
 		Stack usuarios = new Stack<>();
 		Stack pilhaAtividade = new Stack<>();

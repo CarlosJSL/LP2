@@ -1,38 +1,96 @@
 package models;
 
+
+/**Classe para objetos do tipo Arvore Binária, onde serão contidos, valores e métodos para a mesma.
+ * @author Carlos José
+ * @author Judson Matheus
+ */
 public class ArvoreBinaria {
 	private int numeroDeElementos;
 	private NoArvoreBinaria raiz;
 	private ArvoreBinaria arvoreEsquerda;
 	private ArvoreBinaria arvoreDireita;
-
+	
+	/**
+	 * Constructor vazio
+	 */
 	public ArvoreBinaria() {
 	}
-
+	
+	/**
+	  * Retorna a sub arvore da direita de uma arvore binaria
+	  * 
+	  * @return ArvoreBinaria -  Uma nova arvore binaria 
+	  * @author            Carlos José
+	  * @author            Judson Matheus
+	  */
 	public ArvoreBinaria getArvoreDireita() {
 		return arvoreDireita;
 	}
-
+	
+	/**
+	  * Seta a sub arvore da direita de uma arvore binaria
+	  * 
+	  * @param arvoreDireita ArvoreBinaria - arvore binaria a ser setada
+	  * @author            Carlos José
+	  * @author            Judson Matheus
+	  */
 	public void setArvoreDireita(ArvoreBinaria arvoreDireita) {
 		this.arvoreDireita = arvoreDireita;
 	}
-
+	
+	/**
+	  * Retorna a sub arvore da esquerda de uma arvore binaria
+	  * 
+	  * @return ArvoreBinaria - Uma nova arvore binaria 
+	  * @author            Carlos José
+	  * @author            Judson Matheus
+	  */
 	public ArvoreBinaria getArvoreEsquerda() {
 		return arvoreEsquerda;
 	}
-
+	
+	/**
+	  * Seta a sub arvore da esquerda de uma arvore binaria
+	  * 
+	  * @param arvoreEsquerda ArvoreBinaria - arvore binaria a ser setada
+	  * @author            Carlos José
+	  * @author            Judson Matheus
+	  */
 	public void setArvoreEsquerda(ArvoreBinaria arvoreEsquerda) {
 		this.arvoreEsquerda = arvoreEsquerda;
 	}
-
+	
+	/**
+	  * Retorna o nó raiz de uma arvore binaria
+	  * 
+	  * @return NoArvoreBinaria -  Arvore binaria que possui aquele nó raiz
+	  * @author            Carlos José
+	  * @author            Judson Matheus
+	  */
 	public NoArvoreBinaria getRaiz() {
 		return raiz;
 	}
-
+	
+	/**
+	  * Seta o nó raiz de uma arvore binaria
+	  * 
+	  * @param raiz  NoArvoreBinaria - Arvore binaria cuja se deseja setar o valor
+	  * @author            Carlos José
+	  * @author            Judson Matheus
+	  */
 	public void setRaiz(NoArvoreBinaria raiz) {
 		this.raiz = raiz;
 	}
-
+	
+	/**
+	  * Insere um nó em uma arvore binária de acordo com as regras de árvore binária
+	  * O id do usuário foi usado para definir as posições dos nós.
+	  * 
+	  * @param  no NoArvoreBinaria -  Nó que será inserido na arvore
+	  * @author            Carlos José
+	  * @author            Judson Matheus
+	  */
 	public void inserir(NoArvoreBinaria no) {
 
 		if (this.raiz == null) {
@@ -58,7 +116,13 @@ public class ArvoreBinaria {
 		}
 
 	}
-
+	
+	/**
+	  * Percorre a árvore binária em ordem e imprime os valores
+	  * 
+	  * @author            Carlos José
+	  * @author            Judson Matheus
+	  */
 	public void percorrerInOrder() {
 		if (this.raiz == null) {
 			return;
@@ -76,7 +140,13 @@ public class ArvoreBinaria {
 			this.arvoreDireita.percorrerInOrder();
 		}
 	}
-
+	
+	/**
+	  * Percorre a árvore binária em pré-ordem e imprime os valores
+	  * 
+	  * @author            Carlos José
+	  * @author            Judson Matheus
+	  */
 	public void percorrerPreOrder() {
 		if (this.raiz == null) {
 			return;
@@ -94,7 +164,13 @@ public class ArvoreBinaria {
 			this.arvoreDireita.percorrerPreOrder();
 		}
 	}
-
+	
+	/**
+	  * Percorre a árvore binária em pós-ordem e imprime os valores
+	  * 
+	  * @author            Carlos José
+	  * @author            Judson Matheus
+	  */
 	public void percorrerPostOrder() {
 		if (this.raiz == null) {
 			return;
@@ -112,7 +188,15 @@ public class ArvoreBinaria {
 				+ this.raiz.getUsuario().email + "Role: " + this.raiz.getUsuario().role);
 
 	}
-
+	
+	/**
+	  * Buscar um usuário na árvore a partir do id.
+	  * 
+	  * @param user_id Usuario - Id do usuário
+	  * @return  Usuario - Usuário que será retorna da busca. Retonar null caso o usuário não esteja na árvore
+	  * @author            Carlos José
+	  * @author            Judson Matheus
+	  */
 	public Usuario busca(String user_id) {
 		if (this.raiz == null) {
 			return null;
@@ -135,12 +219,29 @@ public class ArvoreBinaria {
 		}
 	}
 	
+	/**
+	  * Retorna a altura da árvore
+	  * 
+	  * @param	root ArvoreBinaria -  Árvore binária cujo se deseja saber a altura
+	  * @return int -  Altura da árvore
+	  * @author            Carlos José
+	  * @author            Judson Matheus
+	  */
 	public int getAltura(ArvoreBinaria root) {
 		if (root == null)
 			return 0;
 		return Math.max(getAltura(root.getArvoreEsquerda()), getAltura(root.getArvoreDireita())) + 1;
 	}
 	
+	
+	/**
+	  * Conta o número de usuários que a ávore possui
+	  * 
+	  * @param 	raiz ArvoreBinaria - Árvore que se deseja saber o número total de usuários
+	  * @return  int -     Total de usuários que a ávore possui	
+	  * @author            Carlos José
+	  * @author            Judson Matheus
+	  */
 	public int contarElementos(ArvoreBinaria raiz) {
 		
 		if (raiz != null) {
@@ -151,6 +252,14 @@ public class ArvoreBinaria {
 		}
 	}
 	
+	/**
+	  * Conta o número de atividades do tipo device que a ávore possui
+	  * 
+	  * @param 	raiz ArvoreBinaria -  Árvore que se deseja saber o número total de devices
+	  * @return  int -     Total de devices que a ávore possui	
+	  * @author            Carlos José
+	  * @author            Judson Matheus
+	  */
 	public int contarDevice(ArvoreBinaria raiz){
 		if (raiz != null) {
 			numeroDeElementos = this.contarDevice(raiz.getArvoreEsquerda())+this.contarDevice(raiz.getArvoreDireita()) + 
@@ -161,6 +270,14 @@ public class ArvoreBinaria {
 		}
 	}
 	
+	/**
+	  * Conta o número de atividades do tipo http que a ávore possui
+	  * 
+	  * @param 	raiz ArvoreBinaria - Árvore que se deseja saber o número total de http's
+	  * @return int -      Total de http's que a ávore possui	
+	  * @author            Carlos José
+	  * @author            Judson Matheus
+	  */
 	public int contarHttp(ArvoreBinaria raiz){
 		if (raiz != null) {
 			numeroDeElementos = this.contarHttp(raiz.getArvoreEsquerda())+this.contarHttp(raiz.getArvoreDireita()) + 
@@ -171,6 +288,14 @@ public class ArvoreBinaria {
 		}
 	}
 	
+	/**
+	  * Conta o número de atividades do tipo logon que a ávore possui
+	  * 
+	  * @param 	raiz ArvoreBinaria - Árvore que se deseja saber o número total de logon's
+	  * @return int -      Total de logon's que a ávore possui	
+	  * @author            Carlos José
+	  * @author            Judson Matheus
+	  */
 	public int contarLogon(ArvoreBinaria raiz){
 		if (raiz != null) {
 			numeroDeElementos = this.contarLogon(raiz.getArvoreEsquerda())+this.contarLogon(raiz.getArvoreDireita()) + 

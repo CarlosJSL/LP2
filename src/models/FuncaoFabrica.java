@@ -1,7 +1,19 @@
 package models;
 
+/**Classe fábrica que contem métodos que retornam um tipo de atividade de acordo com o seu parâmetro
+ * @author Carlos José
+ * @author Judson Matheus
+ */
 public class FuncaoFabrica {
-
+	
+	/**
+	  * Retorna uma atividade baseada no tipo de atributo que a função recebe
+	  * 
+	  * @param atributos String	- String contendo o atributo que definirá o tipo de retorno
+	  * @return Atividade - Retorna uma atividade ou null se o arquivo estiver fora do padrão
+	  * @author            Carlos José
+	  * @author            Judson Matheus
+	  */
 	public Atividade tipoDeAtividade(String[] atributos) {
 		if (atributos[4].compareTo("Connect") == 0 || atributos[4].compareTo("Disconnect") == 0) {
 			Device device = new Device();
