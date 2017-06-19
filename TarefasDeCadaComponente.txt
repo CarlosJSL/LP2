@@ -1,0 +1,19 @@
+
+Carlos -
+- Leitura e gravação dos arquivos csv's
+- Implementação da árvore binária
+- Swing
+	- Tela de busca do usuário a partir do seu id
+	- Tela da visualização da árvore binária
+	- Tela da visualização do histograma
+	- Tela de gravação de arquivos csv's
+	
+Judson - 
+- Implementação da árvore genérica
+- Implementação da lógica de Atividades e relacionamento com o usuário
+- Implementação da lógica do histograma 
+- Implementação do relatório geral de dados consumidos pelo programa a partir de aquivos csv's
+- Swing
+	- Tela principal do sistema
+	- Tela do relatório geral
+

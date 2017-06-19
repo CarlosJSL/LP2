@@ -40,7 +40,7 @@ public class ArquivoCSV {
 				br = new BufferedReader(new FileReader(arquivoCSV));
 				
 			} catch (FileNotFoundException e) {
-//				 e.printStackTrace();
+				 e.printStackTrace();
 				return pilha;
 				
 			}
